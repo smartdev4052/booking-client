@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	/* Scrollbar style*/
+	* {
+		scroll-behavior: smooth;
+	}
+
+	*::-webkit-scrollbar {
+		width: 4px;
+		background-color: transparent;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: #f6f6f6;
+		border-radius: 50px;
+	}
+
+	/* Animations */
+
+	/* GitHub */
+	.gitHubAnimation {
+		animation: onShowGitHub 2s ease-out running;
+	}
+
+	@keyframes onShowGitHub {
+		0% {
+			opacity: 0;
+			transform: translateX(-100%);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+	}
+
+	/* About */
+
+	.aboutAnimation a {
+		animation: onShowLogo 2s ease-in-out running;
+	}
+
+	@keyframes onShowLogo {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.aboutAnimation h2 {
+		animation: onShowStatus 3s ease-in-out running;
+	}
+
+	@keyframes onShowStatus {
+		0% {
+			opacity: 0;
+			transform: scale(0.8);
+		}
+
+		100% {
+			opacity: 0.75;
+			transform: scale(1);
+		}
+	}
+}
