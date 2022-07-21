@@ -2,17 +2,17 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { SelectedContent } from "./context/SelectedContent";
 
-import AppLayout from "./layout/AppLayout";
-import HomePage from "./pages/HomePage";
+import PubAppLayout from "./layout/PubAppLayout";
+import Login from "./pages/pubPages/Login";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<SelectedContent>
 				<Routes>
-					<Route path="/" element={<AppLayout />}>
-						<Route index element={<HomePage />} />
-						<Route path="*" element={<Navigate to="/" replace />} />
+					{/* Public Routes (noAuth) */}
+					<Route path="/" element={<PubAppLayout />}>
+						<Route index element={<Login />} />
 					</Route>
 				</Routes>
 			</SelectedContent>
