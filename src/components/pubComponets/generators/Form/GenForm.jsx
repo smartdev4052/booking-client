@@ -135,6 +135,22 @@ const GenForm = ({ formType }) => {
 		}
 	};
 
+	const checkFooterLeft = () => {
+		if (footerLeft === "Registered? Log In") {
+			return "/";
+		} else if (footerLeft === "Create Account") {
+			return "/register";
+		}
+	};
+
+	const checkFooterRight = () => {
+		if (footerRight === "Registered? Log In") {
+			return "/";
+		} else if (footerRight === "Forgot Password?") {
+			return "/forgot-password";
+		}
+	};
+
 	return (
 		<div className="formAnimation w-full">
 			<div className="mx-auto h-full w-full rounded-3xl transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-black sm:w-[512px] xl:shadow-lg xl:shadow-black">
@@ -155,13 +171,13 @@ const GenForm = ({ formType }) => {
 
 						<div className="flex w-full flex-col items-center justify-between gap-3 text-hotely-gd sm:flex-row xl:gap-0 ">
 							<Link
-								to="/register"
+								to={checkFooterLeft()}
 								className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
 							>
 								{footerLeft}
 							</Link>
 							<Link
-								to="/forgot-password"
+								to={checkFooterRight()}
 								className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
 							>
 								{footerRight}
