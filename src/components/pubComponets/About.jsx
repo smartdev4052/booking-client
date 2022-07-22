@@ -1,7 +1,7 @@
 const About = ({ description, highlight }) => {
 	return (
-		<div className="aboutAnimation">
-			<div className="flex h-full w-full flex-col justify-center">
+		<div className="aboutAnimation w-full">
+			<div className="flex h-full w-full flex-col items-center justify-center">
 				<a
 					href="https://github.com/sebastianlacoste/hotely-client"
 					target="_blank"
@@ -45,9 +45,9 @@ const About = ({ description, highlight }) => {
 						></path>
 					</svg>
 				</a>
-				<div className="textShadow mt-6 cursor-default text-sm font-black tracking-wider text-hotely-lt-gy sm:mt-6 sm:text-4xl">
+				<div className="textShadow mt-2 cursor-default text-center text-2xl font-black tracking-wider text-hotely-lt-gy sm:mt-6 sm:text-4xl xl:w-[477px] xl:text-left">
 					<h2>{description}</h2>
-					<h2 className=" mt-2 text-hotely-gd">{highlight}</h2>
+					<h2 className="mt-1 text-hotely-gd xl:mt-2">{highlight}</h2>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,5 @@
-import GenForm from "../../helpers/hotelForm/GenForm";
-
 const FormRegister = () => {
-	return <GenForm />;
+	return <></>;
 };
 
 export default FormRegister;
