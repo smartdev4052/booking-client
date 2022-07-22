@@ -107,6 +107,42 @@
 		border-bottom-color: #a5a5a5;
 	}
 
+	/* Alert */
+
+	.alertAnimation {
+		animation: onShowAlert 10s ease-in-out running;
+	}
+
+	@keyframes onShowAlert {
+		0% {
+			opacity: 0;
+			transform: translateX(100%);
+		}
+
+		25% {
+			transform: translateX(0%);
+		}
+
+		50% {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+
+		75% {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+
+		95% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(110%);
+		}
+	}
+
 	/* Scrollbar  */
 
 	/* @media (max-width: 1024px) {

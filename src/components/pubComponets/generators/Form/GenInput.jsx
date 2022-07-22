@@ -36,7 +36,6 @@ const genFormInput = ({
 				value={inputValue}
 				placeholder=" "
 				className={`w-full border-b-[1px] bg-transparent py-1 pl-1 text-hotely-lt-gy outline-none ${verifyTypeText()} ${verifyTypeEmail()}`}
-				required
 				onChange={(e) => setValue(e.target.value)}
 			/>
 			<span className="pointer-events-none absolute left-1 translate-y-0 text-xl tracking-wider text-hotely-lt-gy text-opacity-50 transition-all duration-300 ease-out">
