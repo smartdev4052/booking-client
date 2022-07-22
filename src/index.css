@@ -9,12 +9,12 @@
 	}
 
 	*::-webkit-scrollbar {
-		width: 4px;
-		background-color: transparent;
+		width: 8px;
+		background-color: #6f6f6f;
 	}
 
 	*::-webkit-scrollbar-thumb {
-		background-color: #f6f6f6;
+		background-color: #545454;
 		border-radius: 50px;
 	}
 
@@ -106,4 +106,12 @@
 	* {
 		border-bottom-color: #a5a5a5;
 	}
+
+	/* Scrollbar  */
+
+	/* @media (max-width: 1024px) {
+		*::-webkit-scrollbar {
+			display: none;
+		}
+	} */
 }

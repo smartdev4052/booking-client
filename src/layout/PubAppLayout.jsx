@@ -51,7 +51,7 @@ const PubAppLayout = () => {
 						</div>
 					</a>
 				</div>
-				<div className="h-[760px] w-full lg:h-screen">
+				<div className="h-full w-full py-8 lg:h-screen lg:py-0">
 					<Outlet />
 				</div>
 			</div>
