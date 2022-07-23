@@ -110,7 +110,7 @@
 	/* Alert */
 
 	.alertAnimation {
-		animation: onShowAlert 10s ease-in-out running;
+		animation: onShowAlert 5s ease-in-out running;
 	}
 
 	@keyframes onShowAlert {

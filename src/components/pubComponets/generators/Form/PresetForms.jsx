@@ -30,6 +30,8 @@ const fromRegister = (formsInputs) => {
 		setName,
 		password,
 		setPassword,
+		confirmPassword,
+		setConfirmPassword,
 		email,
 		setEmail,
 		phone,
@@ -40,7 +42,7 @@ const fromRegister = (formsInputs) => {
 	return (
 		<>
 			<GenInput
-				dataType="name"
+				dataType="text"
 				inputName="name"
 				inputValue={name}
 				setValue={setName}
@@ -54,21 +56,28 @@ const fromRegister = (formsInputs) => {
 				tagName="Password"
 			/>
 			<GenInput
-				dataType="email"
+				dataType="password"
+				inputName="confirmPassword"
+				inputValue={confirmPassword}
+				setValue={setConfirmPassword}
+				tagName="Repeat Password"
+			/>
+			<GenInput
+				dataType="text"
 				inputName="email"
 				inputValue={email}
 				setValue={setEmail}
 				tagName="Email"
 			/>
 			<GenInput
-				dataType="phone"
+				dataType="text"
 				inputName="phone"
 				inputValue={phone}
 				setValue={setPhone}
 				tagName="Phone"
 			/>
 			<GenInput
-				dataType="web"
+				dataType="text"
 				inputName="web"
 				inputValue={web}
 				setValue={setWeb}

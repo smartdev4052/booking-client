@@ -9,7 +9,7 @@ const genFormInput = ({
 		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 	const verifyTypeText = () => {
-		if (inputValue !== "" && dataType !== "email" && dataType !== "password") {
+		if (inputValue !== "" && inputName !== "email" && dataType !== "password") {
 			if (inputValue.match(/^ *$/) !== null) {
 				return "border-red-400";
 			} else {
@@ -19,7 +19,7 @@ const genFormInput = ({
 	};
 
 	const verifyTypeEmail = () => {
-		if (inputValue !== "" && dataType !== "password" && dataType === "email") {
+		if (inputValue !== "" && dataType !== "password" && inputName === "email") {
 			if (!String(inputValue).toLowerCase().match(emailRegExp)) {
 				return "border-red-400";
 			} else {

@@ -7,8 +7,7 @@ import { createForm } from "./PresetForms";
 import HandleSubmit from "./HandleSubmit";
 
 const GenForm = ({ formType }) => {
-	const { alert, setAlert } = useFormData();
-
+	const formData = useFormData();
 	let footer = {
 		buttonText: "",
 		left: "",
@@ -18,14 +17,14 @@ const GenForm = ({ formType }) => {
 	};
 
 	const submitForm = (e) => {
-		HandleSubmit(e, formType, setAlert);
+		HandleSubmit(e, formType, formData);
 	};
 
 	const checkForm = createForm(formType, footer);
 
 	return (
 		<div className="formAnimation w-full">
-			<div className="mx-auto h-full w-full rounded-3xl transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-black sm:w-[512px] xl:shadow-lg xl:shadow-black">
+			<div className="mx-auto h-full w-full rounded-3xl transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-black sm:w-[512px] sm:shadow-lg sm:shadow-black">
 				<form
 					className="tracking-wides flex h-full w-full flex-col items-center justify-between gap-14 px-4 py-6 text-lg font-light tracking-wider sm:px-8 xl:px-12"
 					onSubmit={submitForm}
@@ -61,7 +60,7 @@ const GenForm = ({ formType }) => {
 					</div>
 				</form>
 			</div>
-			{alert.msg && <Alert alert={alert} />}
+			{formData.alert.msg && <Alert alert={formData.alert} />}
 		</div>
 	);
 };
