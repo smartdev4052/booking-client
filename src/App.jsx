@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import { SelectedContent } from "./context/SelectedContent";
+import { FormData } from "./context/pubContext/FormData";
 
 import PubAppLayout from "./layout/PubAppLayout";
 import GenPubPage from "./pages/pubPages/GenPubPage";
@@ -8,7 +8,7 @@ import GenPubPage from "./pages/pubPages/GenPubPage";
 function App() {
 	return (
 		<BrowserRouter>
-			<SelectedContent>
+			<FormData>
 				<Routes>
 					{/* Public Routes (noAuth) */}
 					<Route path="/" element={<PubAppLayout />}>
@@ -46,7 +46,7 @@ function App() {
 						/>
 					</Route>
 				</Routes>
-			</SelectedContent>
+			</FormData>
 		</BrowserRouter>
 	);
 }

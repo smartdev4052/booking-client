@@ -1,4 +1,5 @@
 import GenInput from "./GenInput";
+import useFormData from "../../../../hooks/pubHooks/useFormData";
 
 const fromLogin = (formsInputs) => {
 	const { email, setEmail, password, setPassword } = formsInputs;
@@ -115,31 +116,31 @@ const fromPwdReset = (formsInputs) => {
 	);
 };
 
-const createForm = (formType, formsInputs, footer) => {
+const createForm = (formType, footer) => {
 	if (formType === "login") {
 		footer.buttonText = "Log In";
 		footer.left = "Create Account";
 		footer.leftTo = "/register";
 		footer.right = "Forgot Password?";
 		footer.rightTo = "/forgot-password";
-		return fromLogin(formsInputs);
+		return fromLogin(useFormData());
 	} else if (formType === "register") {
 		footer.buttonText = "Register";
 		footer.left = "Registered? Log In";
 		footer.leftTo = "/";
 		footer.right = "Forgot Password?";
 		footer.rightTo = "/forgot-password";
-		return fromRegister(formsInputs);
+		return fromRegister(useFormData());
 	} else if (formType === "forgot-password") {
 		footer.buttonText = "Send Link";
 		footer.left = "Create Account";
 		footer.leftTo = "/register";
 		footer.right = "Registered? Log In";
 		footer.rightTo = "/";
-		return fromForgotPwd(formsInputs);
+		return fromForgotPwd(useFormData());
 	} else if (formType === "password-reset") {
 		footer.buttonText = "Set Up";
-		return fromPwdReset(formsInputs);
+		return fromPwdReset(useFormData());
 	}
 };
 

@@ -1,18 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import useFormData from "../../../../hooks/pubHooks/useFormData";
 import Alert from "../../../Alert";
+
 import { createForm } from "./PresetForms";
+import HandleSubmit from "./HandleSubmit";
 
 const GenForm = ({ formType }) => {
-	const [name, setName] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState("");
-	const [web, setWeb] = useState("");
-
-	const [alert, setAlert] = useState({});
+	const { alert, setAlert } = useFormData();
 
 	let footer = {
 		buttonText: "",
@@ -22,39 +17,18 @@ const GenForm = ({ formType }) => {
 		rightTo: "",
 	};
 
-	const checkForm = createForm(
-		formType,
-		{
-			name,
-			setName,
-			password,
-			setPassword,
-			confirmPassword,
-			setConfirmPassword,
-			email,
-			setEmail,
-			phone,
-			setPhone,
-			web,
-			setWeb,
-		},
-		footer
-	);
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setAlert({ error: false, msg: "Email Incorrect. Plase input again" });
-		setTimeout(() => {
-			setAlert({});
-		}, 10000);
+	const submitForm = (e) => {
+		HandleSubmit(e, formType, setAlert);
 	};
+
+	const checkForm = createForm(formType, footer);
 
 	return (
 		<div className="formAnimation w-full">
 			<div className="mx-auto h-full w-full rounded-3xl transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-black sm:w-[512px] xl:shadow-lg xl:shadow-black">
 				<form
 					className="tracking-wides flex h-full w-full flex-col items-center justify-between gap-14 px-4 py-6 text-lg font-light tracking-wider sm:px-8 xl:px-12"
-					onSubmit={handleSubmit}
+					onSubmit={submitForm}
 				>
 					<div className="mt-4 flex w-full flex-col gap-8 xl:gap-16">
 						{checkForm}
