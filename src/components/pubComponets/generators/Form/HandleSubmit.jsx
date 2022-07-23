@@ -1,6 +1,6 @@
 import ClientAxios from "../../../../config/ClientAxios";
 
-const HandleSubmit = (e, formType, formData) => {
+const HandleSubmit = (e, formType, formData, emailToken = "") => {
 	e.preventDefault();
 
 	const {
@@ -18,6 +18,9 @@ const HandleSubmit = (e, formType, formData) => {
 		setWeb,
 		setAlert,
 	} = formData;
+
+	const emailRegExp =
+		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 	const alertOut = () => {
 		setTimeout(() => {
@@ -80,16 +83,59 @@ const HandleSubmit = (e, formType, formData) => {
 		alertOut();
 	};
 
-	const forgotPwd = () => {
-		console.log("FORGOT PWD");
-		setAlert({ error: false, msg: "FORGOT PWD" });
-		alertOut();
+	const forgotPwd = async () => {
+		if (String(email).toLowerCase().match(emailRegExp)) {
+			try {
+				const { data } = await ClientAxios.post("/hotel/forgot-password", {
+					email,
+				});
+				setAlert({ error: false, msg: data.msg });
+				alertOut();
+			} catch (error) {
+				setAlert({ error: true, msg: error.response.data.msg });
+				alertOut();
+			}
+		} else {
+			setAlert({ error: true, msg: "Email Incorrect" });
+			alertOut();
+		}
 	};
 
-	const pwdReset = () => {
-		console.log("PWD RESET");
-		setAlert({ error: false, msg: "PWD RESET" });
-		alertOut();
+	const pwdReset = async () => {
+		if ([password, confirmPassword].includes("")) {
+			setAlert({ error: true, msg: "Empty Fields" });
+			alertOut();
+			return;
+		}
+
+		if (password.length < 8) {
+			setAlert({ error: true, msg: "Password size min. 8 characters" });
+			alertOut();
+			return;
+		}
+
+		if (password !== confirmPassword) {
+			setAlert({ error: true, msg: "Passwords do not match" });
+			alertOut();
+			return;
+		}
+
+		try {
+			const { data } = await ClientAxios.post(
+				`/hotel/forgot-password/${emailToken}`,
+				{
+					password,
+				}
+			);
+			setAlert({ error: false, msg: data.msg });
+			alertOut();
+			setTimeout(() => {
+				window.location.href = "/";
+			}, 5000);
+		} catch (error) {
+			setAlert({ error: true, msg: error.response.data.msg });
+			alertOut();
+		}
 	};
 
 	if (formType === "register") {

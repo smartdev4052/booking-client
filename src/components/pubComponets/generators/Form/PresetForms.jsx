@@ -92,7 +92,7 @@ const fromForgotPwd = (formsInputs) => {
 	return (
 		<>
 			<GenInput
-				dataType="email"
+				dataType="text"
 				inputName="email"
 				inputValue={email}
 				setValue={setEmail}
@@ -149,6 +149,10 @@ const createForm = (formType, footer) => {
 		return fromForgotPwd(useFormData());
 	} else if (formType === "password-reset") {
 		footer.buttonText = "Set Up";
+		footer.left = "Create Account";
+		footer.leftTo = "/register";
+		footer.right = "Registered? Log In";
+		footer.rightTo = "/";
 		return fromPwdReset(useFormData());
 	}
 };

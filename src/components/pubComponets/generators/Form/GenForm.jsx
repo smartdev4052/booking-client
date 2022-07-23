@@ -28,7 +28,7 @@ const GenForm = ({ formType }) => {
 	}, []);
 
 	const submitForm = (e) => {
-		HandleSubmit(e, formType, formData);
+		HandleSubmit(e, formType, formData, emailToken);
 	};
 
 	const checkForm = createForm(formType, footer);
@@ -40,9 +40,7 @@ const GenForm = ({ formType }) => {
 					className="tracking-wides flex h-full w-full flex-col items-center justify-between gap-14 px-4 py-6 text-lg font-light tracking-wider sm:px-8 xl:px-12"
 					onSubmit={submitForm}
 				>
-					<div className="mt-4 flex w-full flex-col gap-8 xl:gap-16">
-						{checkForm}
-					</div>
+					<div className="mt-4 flex w-full flex-col gap-14">{checkForm}</div>
 
 					<div className="flex w-full flex-col gap-8">
 						<div className="w-full">
