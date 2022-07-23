@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 import useFormData from "../../../../hooks/pubHooks/useFormData";
 import Alert from "../../../Alert";
 
 import { createForm } from "./PresetForms";
-import HandleSubmit from "./HandleSubmit";
+import { HandleSubmit, EmailConfirm } from "./HandleSubmit";
 
 const GenForm = ({ formType }) => {
 	const formData = useFormData();
@@ -15,6 +16,16 @@ const GenForm = ({ formType }) => {
 		right: "",
 		rightTo: "",
 	};
+
+	const { emailToken } = useParams();
+
+	useEffect(() => {
+		if (
+			String(window.location.pathname).toLowerCase().match("/email-confirm/*")
+		) {
+			EmailConfirm(formData, emailToken);
+		}
+	}, []);
 
 	const submitForm = (e) => {
 		HandleSubmit(e, formType, formData);

@@ -25,6 +25,15 @@ const HandleSubmit = (e, formType, formData) => {
 		}, 5000);
 	};
 
+	const cleanInputs = () => {
+		setName("");
+		setPassword("");
+		setConfirmPassword("");
+		setEmail("");
+		setPhone("");
+		setWeb("");
+	};
+
 	const register = async () => {
 		if ([name, email, password, confirmPassword, phone, web].includes("")) {
 			setAlert({ error: true, msg: "Empty Fields" });
@@ -45,7 +54,7 @@ const HandleSubmit = (e, formType, formData) => {
 		}
 
 		try {
-			const info = await ClientAxios.post("/hotel", {
+			const { data } = await ClientAxios.post("/hotel", {
 				name,
 				password,
 				email,
@@ -55,16 +64,17 @@ const HandleSubmit = (e, formType, formData) => {
 
 			setAlert({
 				error: false,
-				msg: info.data.msg,
+				msg: data.msg,
 			});
 			alertOut();
+			cleanInputs();
 		} catch (error) {
 			setAlert({ error: true, msg: error.response.data.msg });
 			alertOut();
 		}
 	};
 
-	const login = () => {
+	const login = async () => {
 		console.log("LOGIN");
 		setAlert({ error: false, msg: "LOGIN" });
 		alertOut();
@@ -93,4 +103,24 @@ const HandleSubmit = (e, formType, formData) => {
 	}
 };
 
-export default HandleSubmit;
+const EmailConfirm = async (formData, emailToken) => {
+	const { setAlert } = formData;
+
+	const alertOut = () => {
+		setTimeout(() => {
+			setAlert({});
+		}, 5000);
+	};
+
+	try {
+		const { data } = await ClientAxios(`/hotel/email-confirm/${emailToken}`);
+
+		setAlert({ error: false, msg: data.msg });
+		alertOut();
+	} catch (error) {
+		setAlert({ error: true, msg: error.response.data.msg });
+		alertOut();
+	}
+};
+
+export { HandleSubmit, EmailConfirm };

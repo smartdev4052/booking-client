@@ -7,7 +7,7 @@ const fromLogin = (formsInputs) => {
 	return (
 		<>
 			<GenInput
-				dataType="email"
+				dataType="text"
 				inputName="email"
 				inputValue={email}
 				setValue={setEmail}

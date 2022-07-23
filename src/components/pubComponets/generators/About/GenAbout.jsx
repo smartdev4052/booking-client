@@ -2,16 +2,14 @@ import About from "./About";
 
 const GenAbout = ({ aboutType }) => {
 	const about = () => {
-		if (aboutType === "login") {
-			return (
-				<About description="Log In and Manage" highlight="your Bookings" />
-			);
-		} else if (aboutType === "register") {
+		if (aboutType === "register") {
 			return (
 				<About description="Sign Up and Manage" highlight="your Bookings" />
 			);
-		} else if (aboutType === "email-confirm") {
-			return <About description="" highlight="Email Confirmed" />;
+		} else if (aboutType === "login" || aboutType === "email-confirm") {
+			return (
+				<About description="Log In and Manage" highlight="your Bookings" />
+			);
 		} else if (aboutType === "forgot-password") {
 			return (
 				<About
