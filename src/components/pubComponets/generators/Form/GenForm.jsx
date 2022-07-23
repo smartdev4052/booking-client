@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Alert from "../../../Alert";
-import GenInput from "./GenInput";
+import { createForm } from "./PresetForms";
 
 const GenForm = ({ formType }) => {
 	const [name, setName] = useState("");
@@ -14,145 +14,32 @@ const GenForm = ({ formType }) => {
 
 	const [alert, setAlert] = useState({});
 
-	let buttonText = "";
-	let footerLeft = "";
-	let footerRight = "";
-
-	const fromLogin = () => {
-		return (
-			<>
-				<GenInput
-					dataType="email"
-					inputName="email"
-					inputValue={email}
-					setValue={setEmail}
-					tagName="Email"
-				/>
-				<GenInput
-					dataType="password"
-					inputName="password"
-					inputValue={password}
-					setValue={setPassword}
-					tagName="Password"
-				/>
-			</>
-		);
+	let footer = {
+		buttonText: "",
+		left: "",
+		leftTo: "",
+		right: "",
+		rightTo: "",
 	};
 
-	const fromRegister = () => {
-		return (
-			<>
-				<GenInput
-					dataType="name"
-					inputName="name"
-					inputValue={name}
-					setValue={setName}
-					tagName="Name"
-				/>
-				<GenInput
-					dataType="password"
-					inputName="password"
-					inputValue={password}
-					setValue={setPassword}
-					tagName="Password"
-				/>
-				<GenInput
-					dataType="email"
-					inputName="email"
-					inputValue={email}
-					setValue={setEmail}
-					tagName="Email"
-				/>
-				<GenInput
-					dataType="phone"
-					inputName="phone"
-					inputValue={phone}
-					setValue={setPhone}
-					tagName="Phone"
-				/>
-				<GenInput
-					dataType="web"
-					inputName="web"
-					inputValue={web}
-					setValue={setWeb}
-					tagName="Web"
-				/>
-			</>
-		);
-	};
-
-	const fromForgotPassword = () => {
-		return (
-			<>
-				<GenInput
-					dataType="email"
-					inputName="email"
-					inputValue={email}
-					setValue={setEmail}
-					tagName="Email"
-				/>
-			</>
-		);
-	};
-
-	const fromPasswordReset = () => {
-		return (
-			<>
-				<GenInput
-					dataType="password"
-					inputName="password"
-					inputValue={password}
-					setValue={setPassword}
-					tagName="New Password"
-				/>
-				<GenInput
-					dataType="password"
-					inputName=""
-					inputValue={confirmPassword}
-					setValue={setConfirmPassword}
-					tagName="Repeat Password"
-				/>
-			</>
-		);
-	};
-
-	const checkFormType = () => {
-		if (formType === "login") {
-			buttonText = "Log In";
-			footerLeft = "Create Account";
-			footerRight = "Forgot Password?";
-			return fromLogin();
-		} else if (formType === "register") {
-			buttonText = "Register";
-			footerLeft = "Registered? Log In";
-			footerRight = "Forgot Password?";
-			return fromRegister();
-		} else if (formType === "forgot-password") {
-			buttonText = "Send Link";
-			footerLeft = "Create Account";
-			footerRight = "Registered? Log In";
-			return fromForgotPassword();
-		} else if (formType === "password-reset") {
-			buttonText = "Set Up";
-			return fromPasswordReset();
-		}
-	};
-
-	const checkFooterLeft = () => {
-		if (footerLeft === "Registered? Log In") {
-			return "/";
-		} else if (footerLeft === "Create Account") {
-			return "/register";
-		}
-	};
-
-	const checkFooterRight = () => {
-		if (footerRight === "Registered? Log In") {
-			return "/";
-		} else if (footerRight === "Forgot Password?") {
-			return "/forgot-password";
-		}
-	};
+	const checkForm = createForm(
+		formType,
+		{
+			name,
+			setName,
+			password,
+			setPassword,
+			confirmPassword,
+			setConfirmPassword,
+			email,
+			setEmail,
+			phone,
+			setPhone,
+			web,
+			setWeb,
+		},
+		footer
+	);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -170,7 +57,7 @@ const GenForm = ({ formType }) => {
 					onSubmit={handleSubmit}
 				>
 					<div className="mt-4 flex w-full flex-col gap-8 xl:gap-16">
-						{checkFormType()}
+						{checkForm}
 					</div>
 
 					<div className="flex w-full flex-col gap-8">
@@ -179,22 +66,22 @@ const GenForm = ({ formType }) => {
 								type="submit"
 								className="h-12 w-full rounded-3xl bg-hotely-dk text-2xl font-normal tracking-wider text-hotely-gd shadow-md shadow-black transition-all duration-300 ease-out hover:shadow-lg hover:shadow-black"
 							>
-								{buttonText}
+								{footer.buttonText}
 							</button>
 						</div>
 
 						<div className="flex w-full flex-col items-center justify-between gap-3 text-hotely-gd sm:flex-row xl:gap-0 ">
 							<Link
-								to={checkFooterLeft()}
+								to={footer.leftTo}
 								className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
 							>
-								{footerLeft}
+								{footer.left}
 							</Link>
 							<Link
-								to={checkFooterRight()}
+								to={footer.rightTo}
 								className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
 							>
-								{footerRight}
+								{footer.right}
 							</Link>
 						</div>
 					</div>
