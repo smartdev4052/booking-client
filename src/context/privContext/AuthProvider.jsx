@@ -44,9 +44,14 @@ export const AuthProvider = ({ children }) => {
 		hotelAuth();
 	}, []);
 
+	const signOut = () => {
+		localStorage.removeItem("hotely-jwtoken");
+		setHotel({});
+	};
+
 	return (
 		<AuthContext.Provider
-			value={{ hotel, setHotel, hotelLoading, setHotelLoading }}
+			value={{ hotel, setHotel, hotelLoading, setHotelLoading, signOut }}
 		>
 			{children}
 		</AuthContext.Provider>
