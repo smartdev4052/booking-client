@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 import useFormData from "../../../../hooks/pubHooks/useFormData";
 import Alert from "../../../Alert";
@@ -9,6 +9,7 @@ import { HandleSubmit, EmailConfirm } from "./HandleSubmit";
 
 const GenForm = ({ formType }) => {
 	const formData = useFormData();
+	const navigate = useNavigate();
 	let footer = {
 		buttonText: "",
 		left: "",
@@ -28,7 +29,7 @@ const GenForm = ({ formType }) => {
 	}, []);
 
 	const submitForm = (e) => {
-		HandleSubmit(e, formType, formData, emailToken);
+		HandleSubmit(e, formType, formData, emailToken, navigate);
 	};
 
 	const checkForm = createForm(formType, footer);

@@ -1,6 +1,6 @@
 import ClientAxios from "../../../../config/ClientAxios";
 
-const HandleSubmit = (e, formType, formData, emailToken = "") => {
+const HandleSubmit = (e, formType, formData, emailToken, navigate) => {
 	e.preventDefault();
 
 	const {
@@ -78,9 +78,23 @@ const HandleSubmit = (e, formType, formData, emailToken = "") => {
 	};
 
 	const login = async () => {
-		console.log("LOGIN");
-		setAlert({ error: false, msg: "LOGIN" });
-		alertOut();
+		if ([email, password].includes("")) {
+			setAlert({ error: true, msg: "Empty Fields" });
+			alertOut();
+			return;
+		}
+
+		try {
+			const { data } = await ClientAxios.post("/hotel/login", {
+				email,
+				password,
+			});
+			localStorage.setItem("hotely-jwtoken", data.jwtoken);
+			window.location.href = "/admin";
+		} catch (error) {
+			setAlert({ error: true, msg: error.response.data.msg });
+			alertOut();
+		}
 	};
 
 	const forgotPwd = async () => {
@@ -130,7 +144,7 @@ const HandleSubmit = (e, formType, formData, emailToken = "") => {
 			setAlert({ error: false, msg: data.msg });
 			alertOut();
 			setTimeout(() => {
-				window.location.href = "/";
+				navigate("/");
 			}, 5000);
 		} catch (error) {
 			setAlert({ error: true, msg: error.response.data.msg });
