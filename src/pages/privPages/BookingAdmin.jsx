@@ -1,7 +1,11 @@
+import Table from "../../components/privComponents/Table/Table";
+
 const BookingAdmin = () => {
 	return (
-		<div className="text-white">
-			<h1>BookingAdmin</h1>
+		<div className="container h-screen">
+			<div className="flex h-full w-full flex-col">
+				<Table />
+			</div>
 		</div>
 	);
 };

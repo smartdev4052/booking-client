@@ -6,7 +6,7 @@ const Header = () => {
 	const { signOut } = useAuthProvider();
 
 	return (
-		<div className="flex h-32 w-full items-center justify-center shadow-xl shadow-black">
+		<div className="z-10 flex h-32 w-full items-center justify-center shadow-xl shadow-black">
 			<div className="gitHubAnimation absolute -top-[3px] left-[33px] cursor-pointer">
 				<a
 					href="https://github.com/sebastianlacoste/hotely-client"

@@ -1,8 +1,8 @@
 import { Outlet, Navigate } from "react-router-dom";
 import useAuthProvider from "../hooks/privHooks/useAuthProvider";
 
-import Header from "../pages/privPages/Header";
-import Loading from "../pages/privPages/Loading";
+import Header from "../components/privComponents/Header";
+import Loading from "../components/privComponents/Loading";
 
 const PrivAppLayout = () => {
 	const { hotel, hotelLoading } = useAuthProvider();
@@ -16,11 +16,9 @@ const PrivAppLayout = () => {
 						return <Loading />;
 					} else if (jwtoken && hotel?._id) {
 						return (
-							<div className="min-h-screen w-full bg-hotely-dk">
-								<div className="flex h-full w-full flex-col gap-10 py-8 lg:h-screen lg:py-0">
-									<Header />
-									<Outlet />
-								</div>
+							<div className="max-w-fill flex max-h-full min-h-full min-w-full flex-col items-center justify-between bg-hotely-dk">
+								<Header />
+								<Outlet />
 							</div>
 						);
 					} else {
