@@ -1,13 +1,21 @@
+import { useState } from "react";
 import THead from "./THead";
 import TBody from "./TBody";
 
+import BookingRegister from "../Register/BookingRegister";
+
 const Table = () => {
-	const desing = "";
+	const [showRegister, setShowRegister] = useState(false);
 
 	return (
 		<>
 			<div className="flex h-24 w-full  items-end justify-start pl-9 ">
-				<button className="flex h-14 w-36 translate-y-2 items-center justify-center gap-2 rounded-t-lg bg-hotely-gd transition-all duration-300 ease-out hover:translate-y-0 hover:shadow-xl hover:shadow-black">
+				<button
+					className="flex h-14 w-36 translate-y-2 items-center justify-center gap-2 rounded-t-lg bg-hotely-gd transition-all duration-300 ease-out hover:translate-y-0 hover:shadow-xl hover:shadow-black"
+					onClick={() => {
+						setShowRegister(true);
+					}}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
@@ -29,6 +37,7 @@ const Table = () => {
 					<TBody />
 				</table>
 			</div>
+			{showRegister ? <BookingRegister showRegister={setShowRegister} /> : null}
 		</>
 	);
 };
