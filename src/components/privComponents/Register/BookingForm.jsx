@@ -2,8 +2,14 @@ import { useEffect } from "react";
 import GenInput from "../../pubComponets/generators/Form/GenInput";
 import useBookingProvider from "../../../hooks/privHooks/useBookingProvider";
 
-const BookingForm = ({ inputs, showForm, formType, bookingId }) => {
-	const { bookings } = useBookingProvider();
+const BookingForm = ({
+	inputs,
+	showForm,
+	formType,
+	bookingId,
+	cleanInputs,
+}) => {
+	const { bookings, deleteBooking } = useBookingProvider();
 
 	const {
 		name,
@@ -56,7 +62,7 @@ const BookingForm = ({ inputs, showForm, formType, bookingId }) => {
 								<button
 									className="group px-4 py-2 shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:bg-red-600"
 									onClick={() => {
-										console.log(bookingId);
+										deleteBooking(bookingId, cleanInputs, showForm);
 									}}
 								>
 									<svg

@@ -103,6 +103,7 @@ const BookingRegister = ({ showForm, formType, bookingId }) => {
 						showForm={showForm}
 						formType={formType}
 						bookingId={bookingId}
+						cleanInputs={cleanInputs}
 					/>
 				</form>
 			</div>

@@ -118,6 +118,43 @@ export const BookingProvider = ({ children }) => {
 		}
 	};
 
+	const deleteBooking = async (bookingId, cleanInputs, showRegister) => {
+		if (confirm("Delete Booking?")) {
+			const jwtoken = localStorage.getItem("hotely-jwtoken");
+
+			if (!jwtoken) return;
+
+			const config = {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${jwtoken}`,
+				},
+			};
+
+			try {
+				await ClientAxios.delete(`/booking/${bookingId}`, config);
+
+				const bookingsUpdate = bookings.filter(
+					(booking) => booking._id !== bookingId
+				);
+
+				setBookings(bookingsUpdate);
+
+				setAlert({ error: false, msg: "Successfully Delete" });
+				alertOut();
+
+				setTimeout(() => {
+					cleanInputs();
+				}, 2000);
+				setTimeout(() => {
+					showRegister(false);
+				}, 4000);
+			} catch (error) {
+				console.log(error.response.data.msg);
+			}
+		}
+	};
+
 	return (
 		<BookingContext.Provider
 			value={{
@@ -128,6 +165,7 @@ export const BookingProvider = ({ children }) => {
 				alertOut,
 				registerBooking,
 				editBooking,
+				deleteBooking,
 			}}
 		>
 			{children}
