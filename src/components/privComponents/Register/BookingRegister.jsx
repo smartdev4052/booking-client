@@ -12,7 +12,7 @@ const BookingRegister = ({ showRegister }) => {
 	const [checkIn, setCheckIn] = useState("");
 	const [checkOut, setCheckOut] = useState("");
 	const [room, setRoom] = useState("");
-	const [price, setPrice] = useState("");
+	const [total, setTotal] = useState("");
 
 	const cleanInputs = () => {
 		setName("");
@@ -22,14 +22,14 @@ const BookingRegister = ({ showRegister }) => {
 		setCheckIn("");
 		setCheckOut("");
 		setRoom("");
-		setPrice("");
+		setTotal("");
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		if (
-			[name, lastname, email, phone, checkIn, checkOut, room, price].includes(
+			[name, lastname, email, phone, checkIn, checkOut, room, total].includes(
 				""
 			)
 		) {
@@ -47,7 +47,7 @@ const BookingRegister = ({ showRegister }) => {
 				checkIn,
 				checkOut,
 				room,
-				price,
+				total,
 			},
 			cleanInputs,
 			showRegister
@@ -130,9 +130,9 @@ const BookingRegister = ({ showRegister }) => {
 							/>
 							<GenInput
 								dataType="text"
-								inputName="price"
-								inputValue={price}
-								setValue={setPrice}
+								inputName="total"
+								inputValue={total}
+								setValue={setTotal}
 								tagName="Price"
 							/>
 						</div>
