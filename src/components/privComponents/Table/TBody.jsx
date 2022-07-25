@@ -1,6 +1,6 @@
 import useBookingProvider from "../../../hooks/privHooks/useBookingProvider";
 
-const TBody = () => {
+const TBody = ({ showForm, setFormType, setBookingId }) => {
 	const { bookings } = useBookingProvider();
 	let stripedEffect = false;
 
@@ -14,13 +14,11 @@ const TBody = () => {
 			status: "¿?",
 		};
 
-		console.log(bookingValues);
-
 		const tdBooking = Object.values(bookingValues).map((value) => {
 			return (
 				<td
-					className={`w-[14%] border-x-2 border-b-2 border-hotely-dk transition-all duration-300 ease-out first:border-l-0 last:border-r-0 hover:cursor-default hover:bg-hotely-lt-med-gy hover:text-white ${
-						stripedEffect ? "bg-red-800" : "bg-green-800"
+					className={`w-[14%] border-x-2 border-b-2 border-hotely-dk first:border-l-0 last:border-r-0 ${
+						stripedEffect ? "bg-hotely-med-dk" : "bg-hotely-lt-dk"
 					}`}
 					key={Math.random()}
 				>
@@ -31,14 +29,24 @@ const TBody = () => {
 
 		stripedEffect = !stripedEffect;
 		return (
-			<tr className="h-10" key={Math.random()}>
+			<tr
+				className="h-16 text-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:cursor-pointer hover:bg-opacity-100 hover:text-white hover:shadow-md hover:shadow-hotely-gd"
+				key={Math.random()}
+				onClick={() => {
+					showForm(true);
+					setFormType("Save Changes");
+					setBookingId(booking._id);
+				}}
+			>
 				{tdBooking}
 			</tr>
 		);
 	});
 
 	return (
-		<tbody className="h-full text-center text-hotely-lt-gy">{trBookings}</tbody>
+		<tbody className="h-full text-center tracking-wider text-hotely-lt">
+			{trBookings}
+		</tbody>
 	);
 };
 

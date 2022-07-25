@@ -5,7 +5,6 @@ const BookingContext = createContext();
 
 export const BookingProvider = ({ children }) => {
 	const [bookings, setBookings] = useState([]);
-	const [editBooking, setEditBooking] = useState({});
 	const [alert, setAlert] = useState({});
 
 	const alertOut = () => {
@@ -73,17 +72,62 @@ export const BookingProvider = ({ children }) => {
 		}
 	};
 
+	const editBooking = async (
+		bookingData,
+		bookingId,
+		cleanInputs,
+		showRegister
+	) => {
+		const jwtoken = localStorage.getItem("hotely-jwtoken");
+
+		if (!jwtoken) return;
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${jwtoken}`,
+			},
+		};
+
+		try {
+			const { data } = await ClientAxios.put(
+				`/booking/${bookingId}`,
+				bookingData,
+				config
+			);
+
+			const { createdAt, updatedAt, __v, ...bookingUpdated } = data;
+
+			const bookingsUpdate = bookings.map((booking) =>
+				booking._id === bookingUpdated._id ? bookingUpdated : booking
+			);
+
+			setBookings(bookingsUpdate);
+
+			setAlert({ error: false, msg: "Successfully Edited" });
+			alertOut();
+
+			setTimeout(() => {
+				cleanInputs();
+			}, 2000);
+			setTimeout(() => {
+				showRegister(false);
+			}, 4000);
+		} catch (error) {
+			console.log(error.response.data.msg);
+		}
+	};
+
 	return (
 		<BookingContext.Provider
 			value={{
 				bookings,
 				setBookings,
-				editBooking,
-				setEditBooking,
-				registerBooking,
 				alert,
 				setAlert,
 				alertOut,
+				registerBooking,
+				editBooking,
 			}}
 		>
 			{children}

@@ -94,22 +94,22 @@ const Header = () => {
 					</a>
 				</div>
 				<div className="flex h-full w-1/2 items-center justify-center">
-					<nav className="flex w-1/2 justify-between text-xl uppercase text-hotely-gd">
+					<nav className="flex w-1/2 justify-between text-xl font-medium uppercase text-hotely-gd">
 						<Link
 							to="/admin"
-							className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
+							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
 						>
 							Bookings
 						</Link>
 						<Link
 							to="/admin"
-							className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
+							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
 						>
 							Profile
 						</Link>
 						<Link
 							to="/"
-							className="opacity-75 transition-all duration-300 ease-out hover:opacity-100"
+							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
 							onClick={signOut}
 						>
 							Sign Out
