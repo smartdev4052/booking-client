@@ -8,9 +8,9 @@ import Loading from "../components/privComponents/Loading";
 import Alert from "../components/Alert";
 
 const PrivAppLayout = () => {
-	const { hotel, hotelLoading } = useAuthProvider();
+	const { hotel, hotelLoading, jwtokenName } = useAuthProvider();
 	const { alert } = useBookingProvider();
-	const jwtoken = localStorage.getItem("hotely-jwtoken");
+	const jwtoken = localStorage.getItem(jwtokenName);
 
 	return (
 		<>
@@ -27,7 +27,7 @@ const PrivAppLayout = () => {
 							</div>
 						);
 					} else {
-						return <Navigate to="/" />;
+						return <Navigate to="/" replace />;
 					}
 				})()}
 			</div>

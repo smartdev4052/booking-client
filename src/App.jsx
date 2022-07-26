@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { FormData } from "./context/pubContext/FormData";
+import { RegisterProvider } from "./context/pubContext/RegisterProvider";
 import { AuthProvider } from "./context/privContext/AuthProvider";
 import { BookingProvider } from "./context/privContext/BookingProvider";
 
@@ -13,7 +13,7 @@ import BookingAdmin from "./pages/privPages/BookingAdmin";
 function App() {
 	return (
 		<BrowserRouter>
-			<FormData>
+			<RegisterProvider>
 				<AuthProvider>
 					<BookingProvider>
 						<Routes>
@@ -56,14 +56,13 @@ function App() {
 							</Route>
 
 							{/* Private Routes (Auth) */}
-
 							<Route path="/admin" element={<PrivAppLayout />}>
 								<Route index element={<BookingAdmin />} />
 							</Route>
 						</Routes>
 					</BookingProvider>
 				</AuthProvider>
-			</FormData>
+			</RegisterProvider>
 		</BrowserRouter>
 	);
 }

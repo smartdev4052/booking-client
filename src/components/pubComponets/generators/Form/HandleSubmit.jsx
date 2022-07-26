@@ -17,16 +17,10 @@ const HandleSubmit = (e, formType, formData, emailToken, navigate) => {
 		web,
 		setWeb,
 		setAlert,
+		alertOut,
+		emailRegExp,
+		jwtokenName,
 	} = formData;
-
-	const emailRegExp =
-		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-	const alertOut = () => {
-		setTimeout(() => {
-			setAlert({});
-		}, 5000);
-	};
 
 	const cleanInputs = () => {
 		setName("");
@@ -89,7 +83,7 @@ const HandleSubmit = (e, formType, formData, emailToken, navigate) => {
 				email,
 				password,
 			});
-			localStorage.setItem("hotely-jwtoken", data.jwtoken);
+			localStorage.setItem(jwtokenName, data.jwtoken);
 			window.location.href = "/admin";
 		} catch (error) {
 			setAlert({ error: true, msg: error.response.data.msg });
@@ -164,13 +158,7 @@ const HandleSubmit = (e, formType, formData, emailToken, navigate) => {
 };
 
 const EmailConfirm = async (formData, emailToken) => {
-	const { setAlert } = formData;
-
-	const alertOut = () => {
-		setTimeout(() => {
-			setAlert({});
-		}, 5000);
-	};
+	const { setAlert, alertOut } = formData;
 
 	try {
 		const { data } = await ClientAxios(`/hotel/email-confirm/${emailToken}`);

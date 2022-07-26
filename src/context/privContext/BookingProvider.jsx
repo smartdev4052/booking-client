@@ -1,171 +1,150 @@
 import { useState, useEffect, createContext } from "react";
+
 import ClientAxios from "../../config/ClientAxios";
+
+import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
 
 const BookingContext = createContext();
 
 export const BookingProvider = ({ children }) => {
-	const [bookings, setBookings] = useState([]);
-	const [alert, setAlert] = useState({});
+	const [bookingsCollection, setBookingsCollection] = useState([]);
+	const { headersConfig, jwtokenName, alert, setAlert, alertOut } =
+		useAuthProvider();
 
-	const alertOut = () => {
+	const autoCloseForm = (cleanInputs, showForm) => {
 		setTimeout(() => {
-			setAlert({});
-		}, 5000);
+			cleanInputs();
+		}, 2000);
+		setTimeout(() => {
+			showForm(false);
+		}, 4000);
 	};
 
 	useEffect(() => {
-		const getAllBookings = async () => {
-			const jwtoken = localStorage.getItem("hotely-jwtoken");
+		const getBookingsFromDB = async () => {
+			if (localStorage.getItem(jwtokenName)) {
+				try {
+					const { data } = await ClientAxios("/booking", headersConfig);
 
-			if (!jwtoken) return;
+					const bookingsToCollection = data.map((booking) => {
+						const { createdAt, updatedAt, __v, ...cleanBooking } = booking;
+						return cleanBooking;
+					});
 
-			const config = {
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${jwtoken}`,
-				},
-			};
-
-			try {
-				const { data } = await ClientAxios("/booking", config);
-
-				const bookingsArray = data.map((bookingDB) => {
-					const { createdAt, updatedAt, __v, ...booking } = bookingDB;
-					return booking;
-				});
-
-				setBookings(bookingsArray);
-			} catch (error) {
-				console.log(error.response.data.msg);
+					setBookingsCollection(bookingsToCollection);
+				} catch (error) {
+					console.log(error.response.data.msg);
+				}
 			}
 		};
-		getAllBookings();
+		getBookingsFromDB();
 	}, []);
 
-	const registerBooking = async (bookingData, cleanInputs, showRegister) => {
-		const jwtoken = localStorage.getItem("hotely-jwtoken");
-
-		if (!jwtoken) return;
-
-		const config = {
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${jwtoken}`,
-			},
-		};
-
-		try {
-			const { data } = await ClientAxios.post("/booking", bookingData, config);
-
-			const { createdAt, updatedAt, __v, ...bookingRegistered } = data;
-			setBookings([bookingRegistered, ...bookings]);
-			setAlert({ error: false, msg: "Successfully Registered" });
-			alertOut();
-			setTimeout(() => {
-				cleanInputs();
-			}, 2000);
-			setTimeout(() => {
-				showRegister(false);
-			}, 4000);
-		} catch (error) {
-			console.log(error.response.data.msg);
-		}
-	};
-
-	const editBooking = async (
-		bookingData,
-		bookingId,
+	const registerBookingOnDB = async (
+		bookingToRegister,
 		cleanInputs,
-		showRegister
+		showForm
 	) => {
-		const jwtoken = localStorage.getItem("hotely-jwtoken");
-
-		if (!jwtoken) return;
-
-		const config = {
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${jwtoken}`,
-			},
-		};
-
-		try {
-			const { data } = await ClientAxios.put(
-				`/booking/${bookingId}`,
-				bookingData,
-				config
-			);
-
-			const { createdAt, updatedAt, __v, ...bookingUpdated } = data;
-
-			const bookingsUpdate = bookings.map((booking) =>
-				booking._id === bookingUpdated._id ? bookingUpdated : booking
-			);
-
-			setBookings(bookingsUpdate);
-
-			setAlert({ error: false, msg: "Successfully Edited" });
-			alertOut();
-
-			setTimeout(() => {
-				cleanInputs();
-			}, 2000);
-			setTimeout(() => {
-				showRegister(false);
-			}, 4000);
-		} catch (error) {
-			console.log(error.response.data.msg);
-		}
-	};
-
-	const deleteBooking = async (bookingId, cleanInputs, showRegister) => {
-		if (confirm("Delete Booking?")) {
-			const jwtoken = localStorage.getItem("hotely-jwtoken");
-
-			if (!jwtoken) return;
-
-			const config = {
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${jwtoken}`,
-				},
-			};
-
+		if (localStorage.getItem(jwtokenName)) {
 			try {
-				await ClientAxios.delete(`/booking/${bookingId}`, config);
-
-				const bookingsUpdate = bookings.filter(
-					(booking) => booking._id !== bookingId
+				const { data } = await ClientAxios.post(
+					"/booking",
+					bookingToRegister,
+					headersConfig
 				);
 
-				setBookings(bookingsUpdate);
+				const { createdAt, updatedAt, __v, ...bookingRegistered } = data;
 
-				setAlert({ error: false, msg: "Successfully Delete" });
+				setBookingsCollection([bookingRegistered, ...bookingsCollection]);
+
+				setAlert({ error: false, msg: "Successfully Registered" });
 				alertOut();
 
-				setTimeout(() => {
-					cleanInputs();
-				}, 2000);
-				setTimeout(() => {
-					showRegister(false);
-				}, 4000);
+				autoCloseForm(cleanInputs, showForm);
 			} catch (error) {
-				console.log(error.response.data.msg);
+				setAlert({ error: false, msg: error.response.data.msg });
+				alertOut();
 			}
+		}
+	};
+
+	const editBookingOnDB = async (
+		bookingToEdit,
+		bookingToEditID,
+		cleanInputs,
+		showForm
+	) => {
+		if (localStorage.getItem(jwtokenName)) {
+			try {
+				const { data } = await ClientAxios.put(
+					`/booking/${bookingToEditID}`,
+					bookingToEdit,
+					headersConfig
+				);
+
+				const { createdAt, updatedAt, __v, ...bookingUpdated } = data;
+
+				const updateBookingsCollection = bookingsCollection.map((booking) =>
+					booking._id === bookingUpdated._id ? bookingUpdated : booking
+				);
+
+				setBookingsCollection(updateBookingsCollection);
+
+				setAlert({ error: false, msg: "Successfully Edited" });
+				alertOut();
+
+				autoCloseForm(cleanInputs, showForm);
+			} catch (error) {
+				setAlert({ error: false, msg: error.response.data.msg });
+				alertOut();
+			}
+		}
+	};
+
+	const deleteBookingOnDB = async (
+		bookingToDeleteID,
+		cleanInputs,
+		showForm
+	) => {
+		if (confirm("Delete Booking?")) {
+			if (localStorage.getItem(jwtokenName)) {
+				try {
+					await ClientAxios.delete(
+						`/booking/${bookingToDeleteID}`,
+						headersConfig
+					);
+
+					const updateBookingsCollection = bookingsCollection.filter(
+						(booking) => booking._id !== bookingToDeleteID
+					);
+
+					setBookingsCollection(updateBookingsCollection);
+
+					setAlert({ error: false, msg: "Successfully Delete" });
+					alertOut();
+
+					autoCloseForm(cleanInputs, showForm);
+				} catch (error) {
+					setAlert({ error: false, msg: error.response.data.msg });
+					alertOut();
+				}
+			}
+		} else {
+			return false;
 		}
 	};
 
 	return (
 		<BookingContext.Provider
 			value={{
-				bookings,
-				setBookings,
+				bookingsCollection,
+				setBookingsCollection,
+				registerBookingOnDB,
+				editBookingOnDB,
+				deleteBookingOnDB,
 				alert,
 				setAlert,
 				alertOut,
-				registerBooking,
-				editBooking,
-				deleteBooking,
 			}}
 		>
 			{children}

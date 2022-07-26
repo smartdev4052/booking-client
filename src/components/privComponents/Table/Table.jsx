@@ -2,12 +2,12 @@ import { useState } from "react";
 import THead from "./THead";
 import TBody from "./TBody";
 
-import BookingRegister from "../Register/BookingRegister";
+import BookingForm from "../Register/BookingForm";
 
 const Table = () => {
 	const [showForm, setShowForm] = useState(false);
 	const [formType, setFormType] = useState("");
-	const [bookingId, setBookingId] = useState("");
+	const [bookingID, setBookingID] = useState("");
 
 	return (
 		<>
@@ -45,15 +45,15 @@ const Table = () => {
 					<TBody
 						showForm={setShowForm}
 						setFormType={setFormType}
-						setBookingId={setBookingId}
+						setBookingID={setBookingID}
 					/>
 				</table>
 			</div>
 			{showForm ? (
-				<BookingRegister
+				<BookingForm
 					showForm={setShowForm}
 					formType={formType}
-					bookingId={bookingId}
+					bookingID={bookingID}
 				/>
 			) : null}
 		</>

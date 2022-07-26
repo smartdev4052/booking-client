@@ -1,10 +1,11 @@
 import useBookingProvider from "../../../hooks/privHooks/useBookingProvider";
+import GenKey from "./GenKey";
 
-const TBody = ({ showForm, setFormType, setBookingId }) => {
-	const { bookings } = useBookingProvider();
+const TBody = ({ showForm, setFormType, setBookingID }) => {
+	const { bookingsCollection } = useBookingProvider();
 	let stripedEffect = false;
 
-	const trBookings = bookings.map((booking) => {
+	const trBookings = bookingsCollection.map((booking) => {
 		const bookingValues = {
 			name: `${booking.name + " " + booking.lastname}`,
 			checkIn: String(booking.checkIn).split("T")[0],
@@ -20,7 +21,7 @@ const TBody = ({ showForm, setFormType, setBookingId }) => {
 					className={`w-[14%] border-x-2 border-b-2 border-hotely-dk first:border-l-0 last:border-r-0 ${
 						stripedEffect ? "bg-hotely-med-dk" : "bg-hotely-lt-dk"
 					}`}
-					key={Math.random()}
+					key={GenKey()}
 				>
 					{value}
 				</td>
@@ -31,11 +32,11 @@ const TBody = ({ showForm, setFormType, setBookingId }) => {
 		return (
 			<tr
 				className="h-16 text-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:cursor-pointer hover:bg-opacity-100 hover:text-white hover:shadow-md hover:shadow-hotely-gd"
-				key={Math.random()}
+				key={GenKey()}
 				onClick={() => {
 					showForm(true);
 					setFormType("Save Changes");
-					setBookingId(booking._id);
+					setBookingID(booking._id);
 				}}
 			>
 				{tdBooking}

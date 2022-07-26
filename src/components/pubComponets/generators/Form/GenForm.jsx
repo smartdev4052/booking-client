@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 
-import useFormData from "../../../../hooks/pubHooks/useFormData";
+import useRegisterProvider from "../../../../hooks/pubHooks/useRegisterProvider";
 import Alert from "../../../Alert";
 
 import { createForm } from "./PresetForms";
 import { HandleSubmit, EmailConfirm } from "./HandleSubmit";
 
 const GenForm = ({ formType }) => {
-	const formData = useFormData();
+	const formData = useRegisterProvider();
 	const navigate = useNavigate();
 	let footer = {
 		buttonText: "",

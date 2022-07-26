@@ -1,5 +1,5 @@
 import GenInput from "./GenInput";
-import useFormData from "../../../../hooks/pubHooks/useFormData";
+import useRegisterProvider from "../../../../hooks/pubHooks/useRegisterProvider";
 
 const fromLogin = (formsInputs) => {
 	const { email, setEmail, password, setPassword } = formsInputs;
@@ -132,28 +132,28 @@ const createForm = (formType, footer) => {
 		footer.leftTo = "/register";
 		footer.right = "Forgot Password?";
 		footer.rightTo = "/forgot-password";
-		return fromLogin(useFormData());
+		return fromLogin(useRegisterProvider());
 	} else if (formType === "register") {
 		footer.buttonText = "Register";
 		footer.left = "Registered? Log In";
 		footer.leftTo = "/";
 		footer.right = "Forgot Password?";
 		footer.rightTo = "/forgot-password";
-		return fromRegister(useFormData());
+		return fromRegister(useRegisterProvider());
 	} else if (formType === "forgot-password") {
 		footer.buttonText = "Send Link";
 		footer.left = "Create Account";
 		footer.leftTo = "/register";
 		footer.right = "Registered? Log In";
 		footer.rightTo = "/";
-		return fromForgotPwd(useFormData());
+		return fromForgotPwd(useRegisterProvider());
 	} else if (formType === "password-reset") {
 		footer.buttonText = "Set Up";
 		footer.left = "Create Account";
 		footer.leftTo = "/register";
 		footer.right = "Registered? Log In";
 		footer.rightTo = "/";
-		return fromPwdReset(useFormData());
+		return fromPwdReset(useRegisterProvider());
 	}
 };
 

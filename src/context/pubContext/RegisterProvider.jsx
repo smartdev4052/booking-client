@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 
-const FormContext = createContext();
+const RegisterContext = createContext();
 
-export const FormData = ({ children }) => {
+export const RegisterProvider = ({ children }) => {
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
@@ -10,9 +10,18 @@ export const FormData = ({ children }) => {
 	const [phone, setPhone] = useState("");
 	const [web, setWeb] = useState("");
 	const [alert, setAlert] = useState({});
+	const emailRegExp =
+		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const jwtokenName = "sl-hotely-jwtoken";
+
+	const alertOut = () => {
+		setTimeout(() => {
+			setAlert({});
+		}, 5000);
+	};
 
 	return (
-		<FormContext.Provider
+		<RegisterContext.Provider
 			value={{
 				name,
 				setName,
@@ -28,11 +37,14 @@ export const FormData = ({ children }) => {
 				setWeb,
 				alert,
 				setAlert,
+				alertOut,
+				emailRegExp,
+				jwtokenName,
 			}}
 		>
 			{children}
-		</FormContext.Provider>
+		</RegisterContext.Provider>
 	);
 };
 
-export default FormContext;
+export default RegisterContext;

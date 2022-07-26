@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-	/* Scrollbar style*/
+	/** STYLES */
+
+	/* Scrollbar */
 	* {
 		scroll-behavior: smooth;
 	}
@@ -18,7 +20,16 @@
 		border-radius: 50px;
 	}
 
-	/* Animations */
+	#bookingTable::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Text */
+	.textShadow {
+		text-shadow: black 0px 4px 20px;
+	}
+
+	/** ANIMATIONS */
 
 	/* GitHub */
 	.gitHubAnimation {
@@ -38,7 +49,6 @@
 	}
 
 	/* About */
-
 	.aboutAnimation a {
 		animation: onShowLogo 2s ease-in-out running;
 	}
@@ -83,32 +93,7 @@
 		}
 	}
 
-	/* Forms */
-
-	/* Input-Span down/up Effect */
-	.inputForm input:not(:placeholder-shown) ~ span,
-	.inputForm textarea:not(:placeholder-shown) ~ span,
-	.inputForm input:focus ~ span,
-	.inputForm textarea:focus ~ span {
-		transform: translateY(-20px);
-		font-size: 14px;
-		color: #f6f6f6;
-	}
-
-	/* Text Shadow */
-
-	.textShadow {
-		text-shadow: black 0px 4px 20px;
-	}
-
-	/* Border Bottom */
-
-	* {
-		border-bottom-color: #a5a5a5;
-	}
-
 	/* Alert */
-
 	.alertAnimation {
 		animation: onShowAlert 5s ease-in-out running;
 	}
@@ -143,15 +128,22 @@
 		}
 	}
 
-	/* Scrollbar  */
-
-	#bookingTable::-webkit-scrollbar {
-		display: none;
+	/* Form Span down/up Effect */
+	.downUpEffect input:not(:placeholder-shown) ~ span,
+	.downUpEffect textarea:not(:placeholder-shown) ~ span,
+	.downUpEffect input:focus ~ span,
+	.downUpEffect textarea:focus ~ span {
+		transform: translateY(-20px);
+		font-size: 14px;
+		color: #f6f6f6;
 	}
 
-	/* @media (max-width: 1024px) {
+	/** MEDIA QUERYS */
+
+	/* Scrollbar */
+	@media (max-width: 1024px) {
 		*::-webkit-scrollbar {
 			display: none;
 		}
-	} */
+	}
 }

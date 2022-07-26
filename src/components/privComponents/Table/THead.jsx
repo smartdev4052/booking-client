@@ -4,7 +4,7 @@ const THead = () => {
 	const genHeaders = headers.map((head) => (
 		<th
 			className="w-[14%] border-x-2 border-b-2 border-hotely-dk bg-hotely-gd font-medium transition-all duration-300 ease-out first:rounded-tl-xl first:border-l-0 last:rounded-tr-xl last:border-r-0 hover:cursor-default hover:text-white"
-			key={Math.random()}
+			key={head}
 		>
 			{head}
 		</th>
