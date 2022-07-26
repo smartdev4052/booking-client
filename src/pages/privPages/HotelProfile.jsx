@@ -4,7 +4,8 @@ import GenInput from "../../components/pubComponets/generators/Form/GenInput";
 
 const HotelProfile = () => {
 	const [showForm, setShowForm] = useState("edit-profile");
-	const { hotel, editProfile, setAlert, alertOut } = useAuthProvider();
+	const { hotel, editProfile, changePassword, setAlert, alertOut } =
+		useAuthProvider();
 	const [profile, setProfile] = useState({});
 
 	const [password, setPassword] = useState({
@@ -31,19 +32,30 @@ const HotelProfile = () => {
 
 			editProfile(profile);
 		} else if (showForm === "edit-password") {
-			if (password !== confirmPassword) {
+			if (
+				[password.currentPwd, password.newPwd, password.confirmPwd].includes("")
+			) {
+				setAlert({ error: true, msg: "Empty Fields" });
+				alertOut();
+				return;
+			}
+
+			if (password.newPwd.length < 8) {
+				setAlert({ error: true, msg: "Password size min. 8 characters" });
+				alertOut();
+				return;
+			}
+
+			if (password.newPwd !== password.confirmPwd) {
 				setAlert({ error: true, msg: "Passwords do not match" });
 				alertOut();
 				return;
 			}
 
-			if (password.length < 8) {
-				setAlert({ error: true, msg: "Password size min. 8 characters" });
-				alertOut();
-				return;
-			}
-			setAlert({ error: false, msg: "EDIT PASSWORD" });
-			alertOut();
+			changePassword({
+				currentPwd: password.currentPwd,
+				newPwd: password.newPwd,
+			});
 		}
 	};
 
@@ -147,7 +159,63 @@ const HotelProfile = () => {
 									</span>
 								</div>
 							</>
-						) : null}
+						) : (
+							<>
+								<div className="downUpEffect relative w-full">
+									<input
+										type="password"
+										name="currentPwd"
+										value={password.currentPwd || ""}
+										className={`w-full border-b-[1px] bg-transparent py-1 pl-1 text-hotely-lt-gy outline-none`}
+										onChange={(e) =>
+											setPassword({
+												...password,
+												[e.target.name]: e.target.value,
+											})
+										}
+									/>
+									<span className="pointer-events-none absolute left-1 translate-y-0 text-xl tracking-wider text-hotely-lt-gy text-opacity-50 transition-all duration-300 ease-out">
+										Password
+									</span>
+								</div>
+
+								<div className="downUpEffect relative w-full">
+									<input
+										type="password"
+										name="newPwd"
+										value={password.newPwd || ""}
+										className={`w-full border-b-[1px] bg-transparent py-1 pl-1 text-hotely-lt-gy outline-none`}
+										onChange={(e) =>
+											setPassword({
+												...password,
+												[e.target.name]: e.target.value,
+											})
+										}
+									/>
+									<span className="pointer-events-none absolute left-1 translate-y-0 text-xl tracking-wider text-hotely-lt-gy text-opacity-50 transition-all duration-300 ease-out">
+										New Password
+									</span>
+								</div>
+
+								<div className="downUpEffect relative w-full">
+									<input
+										type="password"
+										name="confirmPwd"
+										value={password.confirmPwd || ""}
+										className={`w-full border-b-[1px] bg-transparent py-1 pl-1 text-hotely-lt-gy outline-none`}
+										onChange={(e) =>
+											setPassword({
+												...password,
+												[e.target.name]: e.target.value,
+											})
+										}
+									/>
+									<span className="pointer-events-none absolute left-1 translate-y-0 text-xl tracking-wider text-hotely-lt-gy text-opacity-50 transition-all duration-300 ease-out">
+										Repeat Password
+									</span>
+								</div>
+							</>
+						)}
 					</div>
 					<div className="flex h-24 w-full items-center justify-center p-5">
 						<button

@@ -49,7 +49,6 @@ export const AuthProvider = ({ children }) => {
 	const editProfile = async (hotelUpdate) => {
 		if (localStorage.getItem(jwtokenName)) {
 			try {
-				console.log("UPDATEEE01");
 				const { data } = await ClientAxios.put(
 					`/hotel/profile/${hotelUpdate._id}`,
 					hotelUpdate,
@@ -60,6 +59,23 @@ export const AuthProvider = ({ children }) => {
 				alertOut();
 			} catch (error) {
 				setHotel({});
+				setAlert({ error: true, msg: error.response.data.msg });
+				alertOut();
+			}
+		}
+	};
+
+	const changePassword = async (password) => {
+		if (localStorage.getItem(jwtokenName)) {
+			try {
+				const { data } = await ClientAxios.put(
+					"/hotel/change-password",
+					password,
+					headersConfig
+				);
+				setAlert({ error: false, msg: data.msg });
+				alertOut();
+			} catch (error) {
 				setAlert({ error: true, msg: error.response.data.msg });
 				alertOut();
 			}
@@ -77,6 +93,7 @@ export const AuthProvider = ({ children }) => {
 				jwtokenName,
 				hotelSignOut,
 				editProfile,
+				changePassword,
 				alert,
 				setAlert,
 				alertOut,
