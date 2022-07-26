@@ -8,7 +8,8 @@ import PubAppLayout from "./layout/PubAppLayout";
 import GenPubPage from "./pages/pubPages/GenPubPage";
 
 import PrivAppLayout from "./layout/PrivAppLayout";
-import BookingAdmin from "./pages/privPages/BookingAdmin";
+import HotelAdmin from "./pages/privPages/HotelAdmin";
+import HotelProfile from "./pages/privPages/HotelProfile";
 
 function App() {
 	return (
@@ -56,8 +57,9 @@ function App() {
 							</Route>
 
 							{/* Private Routes (Auth) */}
-							<Route path="/admin" element={<PrivAppLayout />}>
-								<Route index element={<BookingAdmin />} />
+							<Route path="/hotel" element={<PrivAppLayout />}>
+								<Route index element={<HotelAdmin />} />
+								<Route path="profile" element={<HotelProfile />} />
 							</Route>
 						</Routes>
 					</BookingProvider>

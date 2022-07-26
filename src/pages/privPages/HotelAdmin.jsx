@@ -1,6 +1,6 @@
 import Table from "../../components/privComponents/Table/Table";
 
-const BookingAdmin = () => {
+const HotelAdmin = () => {
 	return (
 		<div className="container h-screen">
 			<div className="flex h-full w-full flex-col">
@@ -10,4 +10,4 @@ const BookingAdmin = () => {
 	);
 };
 
-export default BookingAdmin;
+export default HotelAdmin;

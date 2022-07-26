@@ -84,7 +84,7 @@ const HandleSubmit = (e, formType, formData, emailToken, navigate) => {
 				password,
 			});
 			localStorage.setItem(jwtokenName, data.jwtoken);
-			window.location.href = "/admin";
+			window.location.href = "/hotel";
 		} catch (error) {
 			setAlert({ error: true, msg: error.response.data.msg });
 			alertOut();
