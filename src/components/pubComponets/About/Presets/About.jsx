@@ -6,7 +6,7 @@ const About = ({ description, highlight }) => {
 					href="https://github.com/sebastianlacoste/hotely-client"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="scale-[60%] sm:scale-100"
+					className="scale-[65%] sm:scale-100"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
