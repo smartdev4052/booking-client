@@ -1,17 +1,21 @@
 import useRegisterProvider from "../../../../hooks/pubHooks/useRegisterProvider";
 
-const genFormInput = ({
-	dataType = "text",
+const GenInput = ({
+	inputType = "text",
 	inputName,
 	inputValue,
-	setValue,
-	tagName,
+	setInputValue,
+	spanText,
 	downUpEffect = true,
 }) => {
 	const { emailRegExp } = useRegisterProvider();
 
-	const verifyTypeText = () => {
-		if (inputValue !== "" && inputName !== "email" && dataType !== "password") {
+	const verifyBlanks = () => {
+		if (
+			inputValue !== "" &&
+			inputName !== "email" &&
+			inputType !== "password"
+		) {
 			if (inputValue.match(/^ *$/) !== null) {
 				return "border-red-400";
 			} else {
@@ -20,8 +24,12 @@ const genFormInput = ({
 		}
 	};
 
-	const verifyTypeEmail = () => {
-		if (inputValue !== "" && dataType !== "password" && inputName === "email") {
+	const verifyEmail = () => {
+		if (
+			inputValue !== "" &&
+			inputType !== "password" &&
+			inputName === "email"
+		) {
 			if (!String(inputValue).toLowerCase().match(emailRegExp)) {
 				return "border-red-400";
 			} else {
@@ -33,18 +41,18 @@ const genFormInput = ({
 	return (
 		<div className="downUpEffect relative w-full">
 			<input
-				type={dataType}
+				type={inputType}
 				name={inputName}
 				value={inputValue}
 				{...(downUpEffect && { placeholder: " " })}
-				className={`w-full border-b-[1px] bg-transparent py-1 pl-1 text-hotely-lt-gy outline-none ${verifyTypeText()} ${verifyTypeEmail()}`}
-				onChange={(e) => setValue(e.target.value)}
+				className={`w-full border-b-[1px] bg-transparent py-1 pl-1 text-hotely-lt-gy outline-none ${verifyBlanks()} ${verifyEmail()}`}
+				onChange={(e) => setInputValue(e.target.value)}
 			/>
 			<span className="pointer-events-none absolute left-1 translate-y-0 text-xl tracking-wider text-hotely-lt-gy text-opacity-50 transition-all duration-300 ease-out">
-				{tagName}
+				{spanText}
 			</span>
 		</div>
 	);
 };
 
-export default genFormInput;
+export default GenInput;

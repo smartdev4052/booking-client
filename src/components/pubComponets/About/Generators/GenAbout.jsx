@@ -1,4 +1,4 @@
-import About from "./About";
+import About from "../Presets/About";
 
 const GenAbout = ({ aboutType }) => {
 	const about = () => {

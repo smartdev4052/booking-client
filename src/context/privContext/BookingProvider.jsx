@@ -1,14 +1,12 @@
 import { useState, useEffect, createContext } from "react";
 
-import ClientAxios from "../../config/ClientAxios";
-
 import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
 
 const BookingContext = createContext();
 
 export const BookingProvider = ({ children }) => {
 	const [bookingsCollection, setBookingsCollection] = useState([]);
-	const { headersConfig, jwtokenName, alert, setAlert, alertOut } =
+	const { headersConfig, ClientAxios, jwtokenName, alert, setAlert, alertOut } =
 		useAuthProvider();
 
 	const autoCloseForm = (cleanInputs, showForm) => {
@@ -138,13 +136,13 @@ export const BookingProvider = ({ children }) => {
 		<BookingContext.Provider
 			value={{
 				bookingsCollection,
+				alert,
+				setAlert,
+				alertOut,
 				setBookingsCollection,
 				registerBookingOnDB,
 				editBookingOnDB,
 				deleteBookingOnDB,
-				alert,
-				setAlert,
-				alertOut,
 			}}
 		>
 			{children}

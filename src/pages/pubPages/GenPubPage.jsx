@@ -1,5 +1,5 @@
-import GenAbout from "../../components/pubComponets/generators/About/GenAbout";
-import GenForm from "../../components/pubComponets/generators/Form/GenForm";
+import GenAbout from "../../components/pubComponets/About/Generators/GenAbout";
+import GenForm from "../../components/pubComponets/Form/Generators/GenForm";
 
 const GenPubPage = ({ aboutType, formType }) => {
 	return (

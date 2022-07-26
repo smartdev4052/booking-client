@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import GenInput from "../../pubComponets/generators/Form/GenInput";
+import GenInput from "../../pubComponets/Form/Generators/GenInput";
 import useBookingProvider from "../../../hooks/privHooks/useBookingProvider";
 
 const BookingInputs = ({
@@ -117,69 +117,69 @@ const BookingInputs = ({
 				<div className="flex w-full items-center justify-center gap-28 px-10">
 					<div className="flex h-96 w-full flex-col justify-evenly">
 						<GenInput
-							dataType="text"
+							inputType="text"
 							inputName="name"
 							inputValue={name}
-							setValue={setName}
-							tagName="Name"
+							setInputValue={setName}
+							spanText="Name"
 							downUpEffect={false}
 						/>
 						<GenInput
-							dataType="text"
+							inputType="text"
 							inputName="lastname"
 							inputValue={lastname}
-							setValue={setLastName}
-							tagName="Lastname"
+							setInputValue={setLastName}
+							spanText="Lastname"
 							downUpEffect={false}
 						/>
 						<GenInput
-							dataType="text"
+							inputType="text"
 							inputName="email"
 							inputValue={email}
-							setValue={setEmail}
-							tagName="Email"
+							setInputValue={setEmail}
+							spanText="Email"
 							downUpEffect={false}
 						/>
 						<GenInput
-							dataType="text"
+							inputType="text"
 							inputName="phone"
 							inputValue={phone}
-							setValue={setPhone}
-							tagName="Phone"
+							setInputValue={setPhone}
+							spanText="Phone"
 							downUpEffect={false}
 						/>
 					</div>
 					<div className="flex h-96 w-full flex-col justify-evenly">
 						<GenInput
-							dataType="date"
+							inputType="date"
 							inputName="checkIn"
 							inputValue={checkIn}
-							setValue={setCheckIn}
-							tagName="Check In"
+							setInputValue={setCheckIn}
+							spanText="Check In"
 							downUpEffect={false}
 						/>
 						<GenInput
-							dataType="date"
+							inputType="date"
 							inputName="checkOut"
 							inputValue={checkOut}
-							setValue={setCheckOut}
-							tagName="Check Out"
+							setInputValue={setCheckOut}
+							spanText="Check Out"
 							downUpEffect={false}
 						/>
 						<GenInput
-							dataType="text"
+							inputType="text"
 							inputName="room"
 							inputValue={room}
-							setValue={setRoom}
-							tagName="Room"
+							setInputValue={setRoom}
+							spanText="Room"
 							downUpEffect={false}
 						/>
 						<GenInput
-							dataType="text"
+							inputType="text"
 							inputName="total"
 							inputValue={total}
-							setValue={setTotal}
-							tagName="Price"
+							setInputValue={setTotal}
+							spanText="Price"
 							downUpEffect={false}
 						/>
 					</div>

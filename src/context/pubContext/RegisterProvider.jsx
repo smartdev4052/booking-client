@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import ClientAxios from "../../config/ClientAxios";
 
 const RegisterContext = createContext();
 
@@ -10,9 +11,19 @@ export const RegisterProvider = ({ children }) => {
 	const [phone, setPhone] = useState("");
 	const [web, setWeb] = useState("");
 	const [alert, setAlert] = useState({});
+
+	const jwtokenName = "sl-hotely-jwtoken";
 	const emailRegExp =
 		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	const jwtokenName = "sl-hotely-jwtoken";
+
+	const cleanInputs = () => {
+		setName("");
+		setPassword("");
+		setConfirmPassword("");
+		setEmail("");
+		setPhone("");
+		setWeb("");
+	};
 
 	const alertOut = () => {
 		setTimeout(() => {
@@ -24,22 +35,24 @@ export const RegisterProvider = ({ children }) => {
 		<RegisterContext.Provider
 			value={{
 				name,
-				setName,
 				password,
-				setPassword,
 				confirmPassword,
-				setConfirmPassword,
 				email,
-				setEmail,
 				phone,
-				setPhone,
 				web,
-				setWeb,
 				alert,
-				setAlert,
-				alertOut,
 				emailRegExp,
 				jwtokenName,
+				ClientAxios,
+				setName,
+				setPassword,
+				setConfirmPassword,
+				setEmail,
+				setPhone,
+				setWeb,
+				cleanInputs,
+				setAlert,
+				alertOut,
 			}}
 		>
 			{children}

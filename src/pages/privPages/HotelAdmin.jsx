@@ -1,4 +1,4 @@
-import Table from "../../components/privComponents/Table/Table";
+import Table from "../../components/privComponents/BookingsTable/Table";
 
 const HotelAdmin = () => {
 	return (

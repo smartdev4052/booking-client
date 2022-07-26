@@ -2,7 +2,7 @@ import { useState } from "react";
 import THead from "./THead";
 import TBody from "./TBody";
 
-import BookingForm from "../Register/BookingForm";
+import BookingForm from "../BookingRegister/BookingForm";
 
 const Table = () => {
 	const [showForm, setShowForm] = useState(false);

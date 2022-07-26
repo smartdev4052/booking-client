@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
 
 const Header = () => {
-	const { signOut } = useAuthProvider();
+	const { hotelSignOut } = useAuthProvider();
 
 	return (
 		<div className="z-10 flex h-32 w-full items-center justify-center shadow-xl shadow-black">
@@ -110,7 +110,7 @@ const Header = () => {
 						<Link
 							to="/"
 							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
-							onClick={signOut}
+							onClick={hotelSignOut}
 						>
 							Sign Out
 						</Link>

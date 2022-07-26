@@ -1,7 +1,5 @@
 import { useState, useEffect, createContext } from "react";
 
-import ClientAxios from "../../config/ClientAxios";
-
 import useRegisterProvider from "../../hooks/pubHooks/useRegisterProvider";
 
 const AuthContext = createContext();
@@ -9,7 +7,8 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 	const [hotel, setHotel] = useState({});
 	const [hotelLoading, setHotelLoading] = useState(true);
-	const { jwtokenName, alert, setAlert, alertOut } = useRegisterProvider();
+	const { ClientAxios, jwtokenName, alert, setAlert, alertOut } =
+		useRegisterProvider();
 
 	const headersConfig = {
 		headers: {
@@ -86,17 +85,18 @@ export const AuthProvider = ({ children }) => {
 		<AuthContext.Provider
 			value={{
 				hotel,
-				setHotel,
 				hotelLoading,
-				setHotelLoading,
-				headersConfig,
 				jwtokenName,
-				hotelSignOut,
-				editProfile,
-				changePassword,
 				alert,
 				setAlert,
 				alertOut,
+				headersConfig,
+				ClientAxios,
+				setHotel,
+				setHotelLoading,
+				hotelSignOut,
+				editProfile,
+				changePassword,
 			}}
 		>
 			{children}

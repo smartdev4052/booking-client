@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
-import GenInput from "../../components/pubComponets/generators/Form/GenInput";
 
 const HotelProfile = () => {
 	const [showForm, setShowForm] = useState("edit-profile");
@@ -51,6 +50,12 @@ const HotelProfile = () => {
 				alertOut();
 				return;
 			}
+
+			setPassword({
+				currentPwd: "",
+				newPwd: "",
+				confirmPwd: "",
+			});
 
 			changePassword({
 				currentPwd: password.currentPwd,
