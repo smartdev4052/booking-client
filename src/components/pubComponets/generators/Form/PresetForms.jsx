@@ -87,6 +87,47 @@ const fromRegister = (formsInputs) => {
 	);
 };
 
+const formEditProfile = (formsInputs) => {
+	const { name, setName, email, setEmail, phone, setPhone, web, setWeb } =
+		formsInputs;
+	return (
+		<>
+			<GenInput
+				dataType="text"
+				inputName="name"
+				inputValue={name}
+				setValue={setName}
+				tagName="Name"
+				downUpEffect={false}
+			/>
+			<GenInput
+				dataType="text"
+				inputName="email"
+				inputValue={email}
+				setValue={setEmail}
+				tagName="Email"
+				downUpEffect={false}
+			/>
+			<GenInput
+				dataType="text"
+				inputName="phone"
+				inputValue={phone}
+				setValue={setPhone}
+				tagName="Phone"
+				downUpEffect={false}
+			/>
+			<GenInput
+				dataType="text"
+				inputName="web"
+				inputValue={web}
+				setValue={setWeb}
+				tagName="Web"
+				downUpEffect={false}
+			/>
+		</>
+	);
+};
+
 const fromForgotPwd = (formsInputs) => {
 	const { email, setEmail } = formsInputs;
 	return (
@@ -157,4 +198,11 @@ const createForm = (formType, footer) => {
 	}
 };
 
-export { fromLogin, fromRegister, fromForgotPwd, fromPwdReset, createForm };
+export {
+	fromLogin,
+	fromRegister,
+	fromForgotPwd,
+	fromPwdReset,
+	createForm,
+	formEditProfile,
+};

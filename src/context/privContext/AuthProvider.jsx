@@ -46,6 +46,26 @@ export const AuthProvider = ({ children }) => {
 		setHotel({});
 	};
 
+	const editProfile = async (hotelUpdate) => {
+		if (localStorage.getItem(jwtokenName)) {
+			try {
+				console.log("UPDATEEE01");
+				const { data } = await ClientAxios.put(
+					`/hotel/profile/${hotelUpdate._id}`,
+					hotelUpdate,
+					headersConfig
+				);
+				setHotel(hotelUpdate);
+				setAlert({ error: false, msg: data.msg });
+				alertOut();
+			} catch (error) {
+				setHotel({});
+				setAlert({ error: true, msg: error.response.data.msg });
+				alertOut();
+			}
+		}
+	};
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -56,6 +76,7 @@ export const AuthProvider = ({ children }) => {
 				headersConfig,
 				jwtokenName,
 				hotelSignOut,
+				editProfile,
 				alert,
 				setAlert,
 				alertOut,
