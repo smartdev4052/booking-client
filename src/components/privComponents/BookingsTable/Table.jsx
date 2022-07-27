@@ -12,7 +12,10 @@ const Table = () => {
 
 	return (
 		<>
-			<div className="flex h-14 w-full items-end justify-start pl-4 lg:h-20">
+			<div
+				className="flex h-14 w-full items-end justify-start pl-4 lg:h-20"
+				id="registerBtn"
+			>
 				<button
 					className="group flex h-14 w-36 translate-y-2 items-center justify-center gap-2 rounded-t-2xl bg-hotely-med-dk transition-all duration-300 ease-out hover:translate-y-0 hover:shadow-xl hover:shadow-black"
 					onClick={() => {

@@ -19,7 +19,7 @@ const TBody = ({ showForm, setFormType, setBookingID }) => {
 			return (
 				<td
 					className={`w-[14%] border-x-2 border-b-2 border-hotely-dk first:border-l-0 last:border-r-0 ${
-						stripedEffect ? "bg-hotely-med-dk" : "bg-hotely-lt-dk"
+						stripedEffect ? "bg-hotely-lt-dk" : "bg-hotely-med-dk"
 					}`}
 					key={GenKey()}
 				>

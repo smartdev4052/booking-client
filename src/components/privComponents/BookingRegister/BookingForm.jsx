@@ -77,9 +77,9 @@ const BookingForm = ({ showForm, formType, bookingID }) => {
 
 	return (
 		<div className="fixed left-0 top-0 z-20 h-full w-full">
-			<div className="flex h-full w-full items-center justify-center overflow-y-auto bg-black bg-opacity-25 backdrop-blur-sm">
+			<div className="flex h-full w-full items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
 				<form
-					className="bookingFormAnimation container fixed mx-2 flex h-full w-full md:h-min lg:w-[869px]"
+					className="bookingFormAnimation container fixed mx-2 flex h-full w-full overflow-y-auto md:h-min lg:w-[869px]"
 					onSubmit={handleSubmit}
 					id="bookingForm"
 				>

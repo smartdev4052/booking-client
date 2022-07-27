@@ -65,9 +65,12 @@ const HotelProfile = () => {
 	};
 
 	return (
-		<div className="z-0 flex h-full w-full items-center justify-center bg-hotely-dk">
+		<div className="profileAnimation z-0 flex h-full w-full items-center justify-center bg-hotely-dk">
 			<div className="flex w-full flex-col gap-2 p-2 sm:w-[512px]">
-				<div className="flex h-24 w-full gap-1 rounded-2xl bg-opacity-0 px-1 py-4 text-xl font-semibold text-hotely-gd">
+				<div
+					className="flex h-24 w-full gap-1 rounded-2xl bg-opacity-0 px-1 py-4 text-xl font-semibold text-hotely-gd"
+					id="profileOptions"
+				>
 					<button
 						className="h-full w-1/2 rounded-l-2xl bg-hotely-med-dk uppercase tracking-wider shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-black"
 						onClick={() => {

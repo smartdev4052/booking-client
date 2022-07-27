@@ -30,8 +30,11 @@ const Header = () => {
 	);
 
 	return (
-		<div className="z-40 flex h-24 w-full items-center justify-center transition-all duration-200 ease-out hover:shadow-lg hover:shadow-black lg:h-32">
-			<div className="gitHubAnimation -top-[3px] left-[33px] hidden cursor-pointer lg:absolute lg:flex">
+		<div className="gitHubAnimation z-40 flex h-24 w-full items-center justify-center transition-all duration-200 ease-out hover:shadow-lg hover:shadow-black lg:h-32">
+			<div
+				className="-top-[3px] left-[33px] hidden cursor-pointer lg:absolute lg:flex"
+				id="gitHubIcon"
+			>
 				<a
 					href="https://github.com/sebastianlacoste/hotely-client"
 					target="_blank"
