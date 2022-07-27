@@ -29,6 +29,12 @@
 		text-shadow: black 0px 4px 20px;
 	}
 
+	/* Spacing */
+
+	.profileSpacing {
+		height: calc(100vh - 8rem);
+	}
+
 	/** Animations */
 
 	/* GitHub */
@@ -125,6 +131,73 @@
 		100% {
 			opacity: 0;
 			transform: translateX(110%);
+		}
+	}
+
+	/* Mobile Menu */
+	.mobileMenuAnimation {
+		animation: onShowMobileMenu 1s ease-in-out running;
+	}
+
+	@keyframes onShowMobileMenu {
+		0% {
+			opacity: 0;
+			transform: translateX(100%);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+	}
+
+	.mobileMenuAnimationClose {
+		animation: onCloseMobileMenu 1s ease-in-out running;
+	}
+
+	@keyframes onCloseMobileMenu {
+		0% {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(100%);
+		}
+	}
+
+	/* Booking Form */
+
+	.bookingFormAnimation {
+		animation: onShowBookingForm 1s ease-in-out running;
+	}
+
+	@keyframes onShowBookingForm {
+		0% {
+			opacity: 0;
+			transform: translateY(100%);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+	}
+
+	.bookingFormAnimationClose {
+		animation: onCloseBookingForm 1s ease-in-out running;
+	}
+
+	@keyframes onCloseBookingForm {
+		0% {
+			opacity: 1;
+			transform: translateY(0%);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateY(100%);
 		}
 	}
 

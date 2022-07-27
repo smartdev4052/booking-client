@@ -77,10 +77,11 @@ const BookingForm = ({ showForm, formType, bookingID }) => {
 
 	return (
 		<div className="fixed left-0 top-0 z-20 h-full w-full">
-			<div className="flex h-screen w-full items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
+			<div className="flex h-full w-full items-center justify-center overflow-y-auto bg-black bg-opacity-25 backdrop-blur-sm">
 				<form
-					className="fixed flex h-min w-[969px] rounded-2xl bg-hotely-dk shadow-2xl shadow-black"
+					className="bookingFormAnimation container fixed mx-2 flex h-full w-full md:h-min lg:w-[869px]"
 					onSubmit={handleSubmit}
+					id="bookingForm"
 				>
 					<BookingInputs
 						inputs={{

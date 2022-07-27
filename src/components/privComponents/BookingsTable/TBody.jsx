@@ -31,7 +31,7 @@ const TBody = ({ showForm, setFormType, setBookingID }) => {
 		stripedEffect = !stripedEffect;
 		return (
 			<tr
-				className="h-16 text-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:cursor-pointer hover:bg-opacity-100 hover:text-white hover:shadow-md hover:shadow-hotely-gd"
+				className="h-16 text-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:cursor-pointer hover:bg-opacity-100 hover:text-white hover:shadow-md hover:shadow-hotely-lt-gy"
 				key={GenKey()}
 				onClick={() => {
 					showForm(true);

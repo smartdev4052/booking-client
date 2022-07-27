@@ -3,11 +3,35 @@ import { Link } from "react-router-dom";
 import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
 
 const Header = () => {
-	const { hotelSignOut } = useAuthProvider();
+	const { hotelSignOut, showMobileMenu, setShowMobileMenu } = useAuthProvider();
+
+	const navBar = () => (
+		<>
+			<Link
+				to="/hotel"
+				className="transition-all duration-300 ease-out hover:-translate-y-1"
+			>
+				Bookings
+			</Link>
+			<Link
+				to="/hotel/profile"
+				className="transition-all duration-300 ease-out hover:-translate-y-1"
+			>
+				Profile
+			</Link>
+			<Link
+				to="/"
+				className="transition-all duration-300 ease-out hover:-translate-y-1"
+				onClick={hotelSignOut}
+			>
+				Sign Out
+			</Link>
+		</>
+	);
 
 	return (
-		<div className="z-10 flex h-32 w-full items-center justify-center shadow-xl shadow-black">
-			<div className="gitHubAnimation absolute -top-[3px] left-[33px] cursor-pointer">
+		<div className="z-40 flex h-24 w-full items-center justify-center transition-all duration-200 ease-out hover:shadow-lg hover:shadow-black lg:h-32">
+			<div className="gitHubAnimation -top-[3px] left-[33px] hidden cursor-pointer lg:absolute lg:flex">
 				<a
 					href="https://github.com/sebastianlacoste/hotely-client"
 					target="_blank"
@@ -47,13 +71,13 @@ const Header = () => {
 					</div>
 				</a>
 			</div>
-			<div className="flex h-28 w-[90%] ">
-				<div className="flex h-full w-1/2 items-center justify-center">
+			<div className="flex h-28 w-full justify-evenly lg:w-[90%] ">
+				<div className="flex h-full w-64 items-center justify-center lg:w-1/2">
 					<a
 						href="https://github.com/sebastianlacoste/hotely-client"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="scale-[60%] sm:scale-75"
+						className="scale-50 sm:scale-[60%] lg:scale-75"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -93,28 +117,33 @@ const Header = () => {
 						</svg>
 					</a>
 				</div>
-				<div className="flex h-full w-1/2 items-center justify-center">
-					<nav className="flex w-1/2 justify-between text-xl font-medium uppercase text-hotely-gd">
-						<Link
-							to="/hotel"
-							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
-						>
-							Bookings
-						</Link>
-						<Link
-							to="/hotel/profile"
-							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
-						>
-							Profile
-						</Link>
-						<Link
-							to="/"
-							className="opacity-80 transition-all duration-300 ease-out hover:-translate-y-1 hover:opacity-100"
-							onClick={hotelSignOut}
-						>
-							Sign Out
-						</Link>
+				<div className="flex h-full items-center justify-end lg:w-1/2 lg:justify-center">
+					{/* Desktop Menu */}
+					<nav className="hidden justify-between text-xl font-medium uppercase text-hotely-gd sm:w-3/4 lg:flex lg:w-2/3 2xl:w-1/2">
+						{navBar()}
 					</nav>
+					{/* Mobile Menu */}
+					<div className="scale-[60%] md:scale-75 lg:hidden">
+						<button
+							className="transition-all duration-200 ease-out hover:scale-105"
+							onClick={() => {
+								setShowMobileMenu(true);
+							}}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="64"
+								height="64"
+								fill="none"
+								viewBox="0 0 64 64"
+							>
+								<path
+									fill="#A5A5A5"
+									d="M5.332 15.999a2.667 2.667 0 012.667-2.667h48a2.667 2.667 0 010 5.333h-48A2.667 2.667 0 015.332 16zm0 16.085a2.667 2.667 0 012.667-2.667h48a2.667 2.667 0 110 5.334h-48a2.667 2.667 0 01-2.667-2.667zm2.667 13.419a2.667 2.667 0 000 5.333h48a2.667 2.667 0 100-5.333h-48z"
+								></path>
+							</svg>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
