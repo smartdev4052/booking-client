@@ -9,13 +9,15 @@ export const BookingProvider = ({ children }) => {
 	const { headersConfig, ClientAxios, jwtokenName, alert, setAlert, alertOut } =
 		useAuthProvider();
 
-	const autoCloseForm = (cleanInputs, showForm) => {
+	const autoCloseForm = (showForm) => {
 		setTimeout(() => {
-			cleanInputs();
-		}, 2000);
-		setTimeout(() => {
-			showForm(false);
-		}, 4000);
+			document
+				.querySelector("#bookingForm")
+				.classList.add("bookingFormAnimationClose");
+			setTimeout(() => {
+				showForm(false);
+			}, 900);
+		}, 2250);
 	};
 
 	useEffect(() => {
@@ -38,11 +40,7 @@ export const BookingProvider = ({ children }) => {
 		getBookingsFromDB();
 	}, []);
 
-	const registerBookingOnDB = async (
-		bookingToRegister,
-		cleanInputs,
-		showForm
-	) => {
+	const registerBookingOnDB = async (bookingToRegister, showForm) => {
 		if (localStorage.getItem(jwtokenName)) {
 			try {
 				const { data } = await ClientAxios.post(
@@ -58,7 +56,7 @@ export const BookingProvider = ({ children }) => {
 				setAlert({ error: false, msg: "Successfully Registered" });
 				alertOut();
 
-				autoCloseForm(cleanInputs, showForm);
+				autoCloseForm(showForm);
 			} catch (error) {
 				setAlert({ error: false, msg: error.response.data.msg });
 				alertOut();
@@ -66,12 +64,7 @@ export const BookingProvider = ({ children }) => {
 		}
 	};
 
-	const editBookingOnDB = async (
-		bookingToEdit,
-		bookingToEditID,
-		cleanInputs,
-		showForm
-	) => {
+	const editBookingOnDB = async (bookingToEdit, bookingToEditID, showForm) => {
 		if (localStorage.getItem(jwtokenName)) {
 			try {
 				const { data } = await ClientAxios.put(
@@ -91,7 +84,7 @@ export const BookingProvider = ({ children }) => {
 				setAlert({ error: false, msg: "Successfully Edited" });
 				alertOut();
 
-				autoCloseForm(cleanInputs, showForm);
+				autoCloseForm(showForm);
 			} catch (error) {
 				setAlert({ error: false, msg: error.response.data.msg });
 				alertOut();
@@ -99,11 +92,7 @@ export const BookingProvider = ({ children }) => {
 		}
 	};
 
-	const deleteBookingOnDB = async (
-		bookingToDeleteID,
-		cleanInputs,
-		showForm
-	) => {
+	const deleteBookingOnDB = async (bookingToDeleteID, showForm) => {
 		if (confirm("Delete Booking?")) {
 			if (localStorage.getItem(jwtokenName)) {
 				try {
@@ -121,7 +110,7 @@ export const BookingProvider = ({ children }) => {
 					setAlert({ error: false, msg: "Successfully Delete" });
 					alertOut();
 
-					autoCloseForm(cleanInputs, showForm);
+					autoCloseForm(showForm);
 				} catch (error) {
 					setAlert({ error: false, msg: error.response.data.msg });
 					alertOut();

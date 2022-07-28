@@ -2,13 +2,7 @@ import { useEffect } from "react";
 import GenInput from "../../pubComponets/Form/Generators/GenInput";
 import useBookingProvider from "../../../hooks/privHooks/useBookingProvider";
 
-const BookingInputs = ({
-	inputs,
-	showForm,
-	formType,
-	bookingID,
-	cleanInputs,
-}) => {
+const BookingInputs = ({ inputs, showForm, formType, bookingID }) => {
 	const { bookingsCollection, deleteBookingOnDB } = useBookingProvider();
 
 	const {
@@ -49,11 +43,6 @@ const BookingInputs = ({
 		}
 	}, []);
 
-	const deleteHandle = (e) => {
-		e.preventDefault();
-		deleteBookingOnDB(bookingID, cleanInputs, showForm);
-	};
-
 	const formCloseAnimation = (e) => {
 		e.preventDefault();
 		document
@@ -62,6 +51,11 @@ const BookingInputs = ({
 		setTimeout(() => {
 			showForm(false);
 		}, 900);
+	};
+
+	const deleteHandle = (e) => {
+		e.preventDefault();
+		deleteBookingOnDB(bookingID, showForm);
 	};
 
 	return (
@@ -73,6 +67,7 @@ const BookingInputs = ({
 						
 						`}
 					>
+						{/* Close */}
 						<button
 							className="rounded-full bg-hotely-dk px-4 py-2 shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-black"
 							onClick={formCloseAnimation}
@@ -92,13 +87,15 @@ const BookingInputs = ({
 						</button>
 
 						<div className="flex gap-5">
+							{/* Register || Save Changes */}
 							<button
 								className="rounded-full bg-hotely-dk px-4 py-2 font-medium tracking-wider shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-black"
 								type="submit"
 							>
 								{formType}
 							</button>
-							{formType === "Save Changes" ? (
+							{/* Delete */}
+							{formType === "Save Changes" && (
 								<button
 									className="group rounded-full bg-hotely-dk px-4 py-2 font-medium tracking-wider shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:bg-red-800 hover:shadow-lg hover:shadow-black"
 									onClick={deleteHandle}
@@ -117,7 +114,7 @@ const BookingInputs = ({
 										></path>
 									</svg>
 								</button>
-							) : null}
+							)}
 						</div>
 					</div>
 				</div>

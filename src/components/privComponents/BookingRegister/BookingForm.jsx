@@ -16,17 +16,6 @@ const BookingForm = ({ showForm, formType, bookingID }) => {
 	const [room, setRoom] = useState("");
 	const [total, setTotal] = useState("");
 
-	const cleanInputs = () => {
-		setName("");
-		setLastName("");
-		setEmail("");
-		setPhone("");
-		setCheckIn("");
-		setCheckOut("");
-		setRoom("");
-		setTotal("");
-	};
-
 	//* Register and Edit
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -54,7 +43,6 @@ const BookingForm = ({ showForm, formType, bookingID }) => {
 					total,
 				},
 				bookingID,
-				cleanInputs,
 				showForm
 			);
 		} else {
@@ -69,7 +57,6 @@ const BookingForm = ({ showForm, formType, bookingID }) => {
 					room,
 					total,
 				},
-				cleanInputs,
 				showForm
 			);
 		}
@@ -105,7 +92,6 @@ const BookingForm = ({ showForm, formType, bookingID }) => {
 						showForm={showForm}
 						formType={formType}
 						bookingID={bookingID}
-						cleanInputs={cleanInputs}
 					/>
 				</form>
 			</div>

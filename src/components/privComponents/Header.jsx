@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
 
 const Header = () => {
-	const { hotelSignOut, showMobileMenu, setShowMobileMenu } = useAuthProvider();
+	const { hotelSignOut, setShowMobileMenu } = useAuthProvider();
 
 	const navBar = () => (
 		<>
@@ -122,11 +122,11 @@ const Header = () => {
 				</div>
 				<div className="flex h-full items-center justify-end lg:w-1/2 lg:justify-center">
 					{/* Desktop Menu */}
-					<nav className="hidden justify-between text-xl font-medium uppercase text-hotely-gd sm:w-3/4 lg:flex lg:w-2/3 2xl:w-1/2">
+					<nav className="hidden items-center justify-between text-xl font-medium uppercase text-hotely-gd sm:w-3/4 lg:flex lg:w-2/3 2xl:w-1/2">
 						{navBar()}
 					</nav>
 					{/* Mobile Menu */}
-					<div className="scale-[60%] md:scale-75 lg:hidden">
+					<div className="flex scale-[60%] items-center justify-center md:scale-75 lg:hidden">
 						<button
 							className="transition-all duration-200 ease-out hover:scale-105"
 							onClick={() => {
