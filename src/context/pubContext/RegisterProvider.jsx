@@ -10,6 +10,7 @@ export const RegisterProvider = ({ children }) => {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [web, setWeb] = useState("");
+	const [alertRunning, setAlertRunning] = useState(false);
 	const [alert, setAlert] = useState({});
 
 	const jwtokenName = "sl-hotely-jwtoken";
@@ -26,9 +27,11 @@ export const RegisterProvider = ({ children }) => {
 	};
 
 	const alertOut = () => {
+		setAlertRunning(true);
 		setTimeout(() => {
 			setAlert({});
-		}, 5000);
+			setAlertRunning(false);
+		}, 3100);
 	};
 
 	return (
@@ -44,6 +47,8 @@ export const RegisterProvider = ({ children }) => {
 				emailRegExp,
 				jwtokenName,
 				ClientAxios,
+				alertRunning,
+				setAlertRunning,
 				setName,
 				setPassword,
 				setConfirmPassword,

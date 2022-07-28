@@ -49,6 +49,7 @@ const GenForm = ({ formType }) => {
 							<button
 								type="submit"
 								className="h-12 w-full rounded-3xl bg-hotely-dk text-2xl font-normal tracking-wider text-hotely-gd shadow-md shadow-black transition-all duration-300 ease-out hover:shadow-lg hover:shadow-black"
+								{...(formInputData.alertRunning && { disabled: true })}
 							>
 								{formFooter.submitBtnText}
 							</button>

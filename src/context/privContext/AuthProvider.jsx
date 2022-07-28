@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 	const [hotel, setHotel] = useState({});
 	const [hotelLoading, setHotelLoading] = useState(true);
-	const { ClientAxios, jwtokenName, alert, setAlert, alertOut } =
+	const { ClientAxios, jwtokenName, alert, setAlert, alertOut, alertRunning } =
 		useRegisterProvider();
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -92,6 +92,7 @@ export const AuthProvider = ({ children }) => {
 				alert,
 				setAlert,
 				alertOut,
+				alertRunning,
 				headersConfig,
 				ClientAxios,
 				showMobileMenu,

@@ -3,8 +3,14 @@ import useAuthProvider from "../../hooks/privHooks/useAuthProvider";
 
 const HotelProfile = () => {
 	const [showForm, setShowForm] = useState("edit-profile");
-	const { hotel, editProfile, changePassword, setAlert, alertOut } =
-		useAuthProvider();
+	const {
+		hotel,
+		editProfile,
+		changePassword,
+		setAlert,
+		alertOut,
+		alertRunning,
+	} = useAuthProvider();
 	const [profile, setProfile] = useState({});
 
 	const [password, setPassword] = useState({
@@ -229,6 +235,7 @@ const HotelProfile = () => {
 						<button
 							className="hover:sh h-full w-4/5 rounded-2xl bg-hotely-dk text-lg font-medium uppercase tracking-wider text-hotely-gd shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-black"
 							type="submit"
+							{...(alertRunning && { disabled: true })}
 						>
 							Save Changes
 						</button>

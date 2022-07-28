@@ -3,7 +3,8 @@ import GenInput from "../../pubComponets/Form/Generators/GenInput";
 import useBookingProvider from "../../../hooks/privHooks/useBookingProvider";
 
 const BookingInputs = ({ inputs, showForm, formType, bookingID }) => {
-	const { bookingsCollection, deleteBookingOnDB } = useBookingProvider();
+	const { bookingsCollection, deleteBookingOnDB, alertRunning } =
+		useBookingProvider();
 
 	const {
 		name,
@@ -91,6 +92,7 @@ const BookingInputs = ({ inputs, showForm, formType, bookingID }) => {
 							<button
 								className="rounded-full bg-hotely-dk px-4 py-2 font-medium tracking-wider shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-black"
 								type="submit"
+								{...(alertRunning && { disabled: true })}
 							>
 								{formType}
 							</button>
@@ -99,6 +101,7 @@ const BookingInputs = ({ inputs, showForm, formType, bookingID }) => {
 								<button
 									className="group rounded-full bg-hotely-dk px-4 py-2 font-medium tracking-wider shadow-md shadow-black transition-all duration-300 ease-out hover:scale-105 hover:bg-red-800 hover:shadow-lg hover:shadow-black"
 									onClick={deleteHandle}
+									{...(alertRunning && { disabled: true })}
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"

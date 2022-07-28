@@ -19,7 +19,6 @@ const TBody = ({ showForm, setFormType, setBookingID }) => {
 				return "finished";
 			}
 		};
-		console.log(checkStatus());
 
 		const bookingValues = {
 			name: `${booking.name + " " + booking.lastname}`,
@@ -63,6 +62,7 @@ const TBody = ({ showForm, setFormType, setBookingID }) => {
 					setFormType("Save Changes");
 					setBookingID(booking._id);
 				}}
+				title="View Data"
 			>
 				{tdBooking}
 			</tr>

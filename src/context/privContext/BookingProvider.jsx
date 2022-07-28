@@ -6,8 +6,15 @@ const BookingContext = createContext();
 
 export const BookingProvider = ({ children }) => {
 	const [bookingsCollection, setBookingsCollection] = useState([]);
-	const { headersConfig, ClientAxios, jwtokenName, alert, setAlert, alertOut } =
-		useAuthProvider();
+	const {
+		headersConfig,
+		ClientAxios,
+		jwtokenName,
+		alert,
+		setAlert,
+		alertOut,
+		alertRunning,
+	} = useAuthProvider();
 
 	const autoCloseForm = (showForm) => {
 		setTimeout(() => {
@@ -128,6 +135,7 @@ export const BookingProvider = ({ children }) => {
 				alert,
 				setAlert,
 				alertOut,
+				alertRunning,
 				setBookingsCollection,
 				registerBookingOnDB,
 				editBookingOnDB,
