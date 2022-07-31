@@ -16,14 +16,14 @@ const Register = async ({
 		return;
 	}
 
-	if (password !== confirmPassword) {
-		setAlert({ error: true, msg: "Passwords do not match" });
+	if (password.length < 8) {
+		setAlert({ error: true, msg: "Password size min. 8 characters" });
 		alertOut();
 		return;
 	}
 
-	if (password.length < 8) {
-		setAlert({ error: true, msg: "Password size min. 8 characters" });
+	if (password !== confirmPassword) {
+		setAlert({ error: true, msg: "Passwords do not match" });
 		alertOut();
 		return;
 	}

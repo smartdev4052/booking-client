@@ -40,7 +40,8 @@ export const BookingProvider = ({ children }) => {
 
 					setBookingsCollection(bookingsToCollection);
 				} catch (error) {
-					console.log(error.response.data.msg);
+					setAlert({ error: true, msg: error.response.data.msg });
+					alertOut();
 				}
 			}
 		};
@@ -65,7 +66,7 @@ export const BookingProvider = ({ children }) => {
 
 				autoCloseForm(showForm);
 			} catch (error) {
-				setAlert({ error: false, msg: error.response.data.msg });
+				setAlert({ error: true, msg: error.response.data.msg });
 				alertOut();
 			}
 		}
@@ -93,7 +94,7 @@ export const BookingProvider = ({ children }) => {
 
 				autoCloseForm(showForm);
 			} catch (error) {
-				setAlert({ error: false, msg: error.response.data.msg });
+				setAlert({ error: true, msg: error.response.data.msg });
 				alertOut();
 			}
 		}
@@ -103,7 +104,7 @@ export const BookingProvider = ({ children }) => {
 		if (confirm("Delete Booking?")) {
 			if (localStorage.getItem(jwtokenName)) {
 				try {
-					await ClientAxios.delete(
+					const { data } = await ClientAxios.delete(
 						`/booking/${bookingToDeleteID}`,
 						headersConfig
 					);
@@ -114,12 +115,12 @@ export const BookingProvider = ({ children }) => {
 
 					setBookingsCollection(updateBookingsCollection);
 
-					setAlert({ error: false, msg: "Successfully Delete" });
+					setAlert({ error: false, msg: data.msg });
 					alertOut();
 
 					autoCloseForm(showForm);
 				} catch (error) {
-					setAlert({ error: false, msg: error.response.data.msg });
+					setAlert({ error: true, msg: error.response.data.msg });
 					alertOut();
 				}
 			}

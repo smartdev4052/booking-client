@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 		if (localStorage.getItem(jwtokenName)) {
 			try {
 				const { data } = await ClientAxios.put(
-					`/hotel/profile/${hotelUpdate._id}`,
+					"/hotel/profile",
 					hotelUpdate,
 					headersConfig
 				);
@@ -59,7 +59,6 @@ export const AuthProvider = ({ children }) => {
 				setAlert({ error: false, msg: data.msg });
 				alertOut();
 			} catch (error) {
-				setHotel({});
 				setAlert({ error: true, msg: error.response.data.msg });
 				alertOut();
 			}

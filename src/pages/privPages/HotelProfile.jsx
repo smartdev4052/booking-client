@@ -64,7 +64,7 @@ const HotelProfile = () => {
 			});
 
 			changePassword({
-				currentPwd: password.currentPwd,
+				password: password.currentPwd,
 				newPwd: password.newPwd,
 			});
 		}

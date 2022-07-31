@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { RegisterProvider } from "./context/pubContext/RegisterProvider";
 import { AuthProvider } from "./context/privContext/AuthProvider";
@@ -56,12 +56,14 @@ function App() {
 									}
 								/>
 								<Route path="/terms" element={<Terms />} />
+								<Route path="*" element={<Navigate to="/" replace />} />
 							</Route>
 
 							{/* Private Routes (Auth) */}
 							<Route path="/hotel" element={<PrivAppLayout />}>
 								<Route index element={<HotelAdmin />} />
 								<Route path="profile" element={<HotelProfile />} />
+								<Route path="*" element={<Navigate to="/hotel" replace />} />
 							</Route>
 						</Routes>
 					</BookingProvider>
