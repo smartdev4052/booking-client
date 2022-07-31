@@ -1,7 +1,7 @@
 const Alert = ({ alert }) => {
 	return (
 		<div
-			className={`alertAnimation fixed bottom-5 right-5 z-50 flex w-max items-center justify-center gap-2 rounded-md bg-opacity-75 p-3 text-center text-sm font-bold uppercase text-white opacity-0 transition-all duration-200 ease-out md:top-5 md:bottom-auto ${
+			className={`alertAnimation fixed bottom-5 right-0 z-50 flex w-max items-center justify-center gap-2 rounded-l-md bg-opacity-75 p-3 text-center text-xs font-bold uppercase text-white opacity-0 transition-all duration-200 ease-out md:top-5 md:right-5 md:bottom-auto md:rounded-md md:text-sm ${
 				alert.error ? "bg-red-400" : "bg-green-400"
 			}`}
 			id="alertMessage"
