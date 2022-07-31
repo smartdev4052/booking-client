@@ -6,6 +6,7 @@ import { BookingProvider } from "./context/privContext/BookingProvider";
 
 import PubAppLayout from "./layout/PubAppLayout";
 import GenPubPage from "./pages/pubPages/GenPubPage";
+import Terms from "./pages/pubPages/Terms";
 
 import PrivAppLayout from "./layout/PrivAppLayout";
 import HotelAdmin from "./pages/privPages/HotelAdmin";
@@ -54,6 +55,7 @@ function App() {
 										/>
 									}
 								/>
+								<Route path="/terms" element={<Terms />} />
 							</Route>
 
 							{/* Private Routes (Auth) */}

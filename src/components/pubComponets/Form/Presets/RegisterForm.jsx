@@ -14,7 +14,7 @@ const RegisterForm = (GenInput, formInputData, formFooter) => {
 		setWeb,
 	} = formInputData;
 
-	formFooter.submitBtnText = "Register";
+	formFooter.submitBtnText = "Sign Up";
 	formFooter.leftLinkText = "Registered? Log In";
 	formFooter.leftLinkTo = "/";
 	formFooter.rightLinkText = "Forgot Password?";

@@ -55,6 +55,17 @@ const GenForm = ({ formType }) => {
 							</button>
 						</div>
 
+						{formType === "register" && (
+							<div className="w-full text-center text-sm text-hotely-lt-med-gy">
+								<span>
+									By clicking Sign Up, you agree to the{" "}
+									<Link to="/terms" className="font-normal underline">
+										Hotely Terms
+									</Link>
+								</span>
+							</div>
+						)}
+
 						<div className="flex w-full flex-col items-center justify-between gap-3 text-hotely-gd sm:flex-row xl:gap-0 ">
 							<Link
 								to={formFooter.leftLinkTo}
