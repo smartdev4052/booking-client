@@ -103,7 +103,6 @@
 	}
 
 	/* Terms */
-
 	.termsAnimation {
 		animation: onShowTerms 1s ease-in-out running;
 	}
@@ -237,6 +236,29 @@
 		100% {
 			opacity: 1;
 			transform: translateY(0%);
+		}
+	}
+
+	/* EmptyBox */
+	.emptyBoxAnimation #emptyText {
+		animation: onShowEmptyBox 4s ease-in-out running;
+	}
+
+	.emptyBoxAnimation #emptyBox {
+		animation: onShowEmptyBox 3s ease-in-out running;
+	}
+
+	@keyframes onShowEmptyBox {
+		0% {
+			opacity: 0;
+		}
+
+		75% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
 		}
 	}
 
