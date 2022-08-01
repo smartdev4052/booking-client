@@ -1,96 +1,92 @@
 <div align="center">
-  <a href="https://basis-frontend.sebastianlacoste.com" target="_blank" rel="noopener noreferrer">
-    <img width="" src="./doc/Readme/Logo.png" alt="Basis Front-end Logo">
+  <a href="https://hotely.sebastianlacoste.com" target="_blank" rel="noopener noreferrer">
+    <img width="" src="./doc/Readme/Logo.png" alt="Hotely-Logo">
   </a>
 </div>
 
 ---
 
-> [Basis Front-end](https://basis-frontend.sebastianlacoste.com), for a quick start in development with Vite, React, Tailwind CSS, Axios, and Much more.
+> [Hotely](https://hotely.sebastianlacoste.com) is a Booking Manager Client that interacts with the API running on [Hotely-Server](https://github.com/sebastianlacoste/hotely-server).
 
 ## Features
 
-- **Pre-Config**
+- **Pages Layout**
 
-  - **Vite**
+  - **Public**
 
-    - Environment Variables
+    - Register
 
-  - **React & React Router**
+    - Email Confirm
 
-    - Project Structure
+    - Login
 
-    - Context & Hooks
+    - Forgot Password
 
-    - Browser Router
+    - Password Reset
 
-  - **Tailwind CSS**
+    - Terms
 
-    - index.css
+  - **Private**
 
-    - Custom Colors
+    - Bookings Manager
 
-  - **PostCSS**
+    - Hotel Profile
 
-  - **Axios**
+- **Manager**
 
-    - Custom Instance
+  - **Hotel Profile**
 
-      - BaseURL ([CoinGecko API](https://www.coingecko.com/en/api))
+    - Create, Read and Update
 
-    - REQ
+  - **Bookings**
 
-      - GET
+    - Create, Read, Update and Delete
 
-  - **PWA Support**
+    - CheckIn and CheckOut Status
 
-    - manifest.json
+      - Pending
 
-    - Service Worker
+      - Active
 
-  - **Netlify**
-
-    - \_redirects
+      - Finished
 
 - **Mobile-Friendly**
 
-- **README Template**
+- **PWA Support**
 
 ## Tech Stack
 
-- **Front-end**
+- **Build**
 
-  - **Build**
+  - [Vite](https://github.com/vitejs/vite)
 
-    - [Vite](https://github.com/vitejs/vite)
+- **HTML/JS**
 
-  - **HTML/JS**
+  - [React](https://github.com/facebook/react)
 
-    - [React](https://github.com/facebook/react)
+  - [React Router](https://github.com/remix-run/react-router)
 
-    - [React Router](https://github.com/remix-run/react-router)
+- **CSS**
 
-  - **CSS**
+  - [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
 
-    - [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
+  - [Prettier plugin for Tailwind CSS](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
 
-    - [Prettier plugin for Tailwind CSS](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+  - [PostCSS](https://github.com/postcss/postcss)
 
-    - [PostCSS](https://github.com/postcss/postcss)
+  - [Autoprefixer](https://github.com/postcss/autoprefixer)
 
-    - [Autoprefixer](https://github.com/postcss/autoprefixer)
+- **HTTP-Client**
 
-  - **HTTP-Client**
-
-    - [Axios](https://github.com/axios/axios)
+  - [Axios](https://github.com/axios/axios)
 
 ## Environment Variables
 
 Before running it locally, you must obtain the following values to initialize the required variables.
 
-| Variable           | Value     | Description                   |
-| :----------------- | :-------- | :---------------------------- |
-| `VITE_ENV_CONTENT` | `testing` | **Not/Required**. ENV Testing |
+| Variable          | Value                                                              | Description                                  |
+| :---------------- | :----------------------------------------------------------------- | :------------------------------------------- |
+| `VITE_SERVER_URL` | [Hotely-Server](https://github.com/sebastianlacoste/hotely-server) | **Required**. API basePath URL on the Server |
 
 ## Run Locally
 
@@ -103,19 +99,19 @@ Clone the repository
 - HTTPS
 
   ```bash
-  git clone https://github.com/sebastianlacoste/basis-frontend.git
+  git clone https://github.com/sebastianlacoste/hotely-client.git
   ```
 
 - SSH
 
   ```bash
-  git clone git@github.com:sebastianlacoste/basis-frontend.git
+  git clone git@github.com:sebastianlacoste/hotely-client.git
   ```
 
 Go to the repository directory
 
 ```bash
-  cd basis-frontend/
+  cd hotely-client/
 ```
 
 Install dev/Dependencies
@@ -129,7 +125,7 @@ Add Environment Variables to `.env` file
 - You must replace **"somevalue"** with your own values.
 
 ```bash
-  echo $'VITE_ENV_CONTENT=somevalue' >> .env
+  echo $'VITE_SERVER_URL=somevalue' >> .env
 ```
 
 Start the server
@@ -149,24 +145,30 @@ In the browser, go to
 - HTTPS
 
   ```bash
-  git clone https://github.com/sebastianlacoste/basis-frontend.git; cd basis-frontend/; npm i; echo $'VITE_ENV_CONTENT=somevalue' >> .env; npm run dev;
+  git clone https://github.com/sebastianlacoste/hotely-client.git; cd hotely-client/; npm i; echo $'VITE_SERVER_URL=somevalue' >> .env; npm run dev;
   ```
 
 - SSH
 
   ```bash
-  git clone git@github.com:sebastianlacoste/basis-frontend.git; cd basis-frontend/; npm i; echo $'VITE_ENV_CONTENT=somevalue' >> .env; npm run dev;
+  git clone git@github.com:sebastianlacoste/hotely-client.git; cd hotely-client/; npm i; echo $'VITE_SERVER_URL=somevalue' >> .env; npm run dev;
   ```
 
 ## Screenshots
 
 - **Desktop**
 
-  ![Desktop](./doc/Readme/Desktop.png)
+  ![Desktop-Pub-LogIn](./doc/Readme/Desktop-Pub-LogIn.png)
+
+  ![Desktop-Priv-HomePage](./doc/Readme/Desktop-Priv-Home.png)
 
 - **Mobile**
 
-  ![Mobile](./doc/Readme/Mobile.png)
+  ![Mobile-Pub-LogIn](./doc/Readme/Mobile-Pub-LogIn.png)
+
+  ![Mobile-Priv-HomePage](./doc/Readme/Mobile-Priv-Home.png)
+
+  ![Mobile-Priv-Menu](./doc/Readme/Mobile-Priv-Menu.png)
 
 ## License
 
