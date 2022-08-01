@@ -1,13 +1,15 @@
 {
-	"name": "Basis Front-end",
-	"short_name": "Basis Front-end",
-	"description": "Sebastian Lacoste - Basis Front-end",
+	"name": "Hotely",
+	"author": "Sebastian Lacoste",
+	"homepage_url": "https://github.com/sebastianlacoste/hotely-client",
+	"short_name": "Hotely",
+	"description": "Hotely, a Booking Manager Client.",
 	"version": "1.0.0",
 	"start_url": ".",
 	"display": "standalone",
 	"orientation": "portrait-primary",
-	"background_color": "#000000",
-	"theme_color": "#242428",
+	"background_color": "#272727",
+	"theme_color": "#363636",
 	"icons": [
 		{
 			"src": "./images/icons/icon48.png",
