@@ -10,7 +10,7 @@ const PubAppLayout = () => {
 
 	return (
 		<>
-			<div className="flex min-h-screen w-full flex-col justify-center bg-hotely-dk">
+			<div className="flex min-h-screen w-full flex-col justify-center overflow-y-auto bg-hotely-dk">
 				<div className="gitHubAnimation absolute -top-[3px] left-[33px] z-10 cursor-pointer">
 					<a
 						href="https://github.com/sebastianlacoste/hotely-client"
@@ -52,7 +52,7 @@ const PubAppLayout = () => {
 					</a>
 				</div>
 
-				<div className="h-full w-full py-8 lg:py-0 xl:h-screen">
+				<div className="h-full w-full py-8 lg:py-0">
 					<Outlet />
 				</div>
 			</div>
