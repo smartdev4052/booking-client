@@ -1,9 +1,3 @@
-<div align="center">
-  <a href="https://hotely.sebastianlacoste.com" target="_blank" rel="noopener noreferrer">
-    <img width="" src="./doc/Readme/Logo.png" alt="Hotely-Logo">
-  </a>
-</div>
-
 ---
 ## Features
 
@@ -103,17 +97,3 @@ In the browser, go to
 ```
   http://localhost:3000
 ```
-
-**All-In-One**
-
-- HTTPS
-
-  ```bash
-  git clone https://github.com/sebastianlacoste/hotely-client.git; cd hotely-client/; npm i; echo $'VITE_SERVER_URL=somevalue' >> .env; npm run dev;
-  ```
-
-- SSH
-
-  ```bash
-  git clone git@github.com:sebastianlacoste/hotely-client.git; cd hotely-client/; npm i; echo $'VITE_SERVER_URL=somevalue' >> .env; npm run dev;
-  ```
